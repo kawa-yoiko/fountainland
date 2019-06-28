@@ -21,7 +21,7 @@
 
 #include "raylib.h"
 
-//MHY has entered the group.
+//MHY is stupid.
 
 void draw();
 
@@ -32,7 +32,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Fountain Land");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
