@@ -21,6 +21,8 @@
 
 #include "raylib.h"
 
+//MHY has entered the group.
+
 void draw();
 
 int main(void)
