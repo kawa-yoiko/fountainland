@@ -188,6 +188,9 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),LINUX)
         MAKE = make
     endif
+    ifeq ($(PLATFORM_OS),OSX)
+        MAKE = make
+    endif
 endif
 
 # Define compiler flags:
@@ -199,7 +202,11 @@ endif
 #  -std=gnu99           defines C language mode (GNU C from 1999 revision)
 #  -Wno-missing-braces  ignore invalid warning (GCC bug 53119)
 #  -D_DEFAULT_SOURCE    use with -std=c99 on Linux and PLATFORM_WEB, required for timespec
-CFLAGS += -O2 -s -Wall -std=c++11 -D_DEFAULT_SOURCE -Wno-missing-braces -static
+ifeq ($(PLATFORM_OS),OSX)
+    CFLAGS += -O2 -Wall -std=c++11 -D_DEFAULT_SOURCE -Wno-missing-braces
+else
+    CFLAGS += -O2 -s -Wall -std=c++11 -D_DEFAULT_SOURCE -Wno-missing-braces -static
+endif
 
 ifeq ($(BUILD_MODE),DEBUG)
     CFLAGS += -g
@@ -325,7 +332,7 @@ ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),OSX)
         # Libraries for OSX 10.9 desktop compiling
         # NOTE: Required packages: libopenal-dev libegl1-mesa-dev
-        LDLIBS = -lraylib -framework OpenGL -framework OpenAL -framework Cocoa
+        LDLIBS = libraylib_osx.a -framework OpenGL -framework OpenAL -framework Cocoa -framework IOKit -framework CoreVideo -lstdc++
     endif
     ifeq ($(PLATFORM_OS),BSD)
         # Libraries for FreeBSD, OpenBSD, NetBSD, DragonFly desktop compiling
