@@ -4,7 +4,8 @@
 class Bubble :public Trigger {
 public:
 	Bubble(Vector2& pos, int size, int impact);
-	void putIntoWorld();
+	void putIntoWorld();//put bubble into the world
+	void trigger() override;
 	~Bubble() {}
 private:
 	Vector2 bubblePos;
