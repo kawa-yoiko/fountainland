@@ -19,23 +19,23 @@
 *
 ********************************************************************************************/
 
+#include "Global.h"
+#include "SceneStartup.h"
+
 #include "raylib.h"
-
-//MHY is smart.
-
-void draw();
 
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "Fountain Land");
+    InitWindow(SCR_W, SCR_H, "Fountain Land");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+
+    preload();
     //--------------------------------------------------------------------------------------
+
+    pushScene(new SceneStartup());
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
