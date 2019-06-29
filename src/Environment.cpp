@@ -1,5 +1,5 @@
 #include "Environment.h"
 
-Environment::Environment(){
+Environment::Environment():Interactable(){
 	isTrigger = false;
 }

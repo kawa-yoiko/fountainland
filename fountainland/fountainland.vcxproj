@@ -191,6 +191,8 @@
     <ClCompile Include="..\src\hi.cpp" />
     <ClCompile Include="..\src\Interactable.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
+    <ClCompile Include="..\src\SceneGameplay.cpp" />
+    <ClCompile Include="..\src\SceneStartup.cpp" />
     <ClCompile Include="..\src\Trigger.cpp" />
     <ClCompile Include="..\src\Windmill.cpp" />
   </ItemGroup>
@@ -260,8 +262,12 @@
     <ClInclude Include="..\src\Environment.h" />
     <ClInclude Include="..\src\Fountain.h" />
     <ClInclude Include="..\src\GameObject.h" />
+    <ClInclude Include="..\src\Global.h" />
     <ClInclude Include="..\src\Interactable.h" />
     <ClInclude Include="..\src\Player.h" />
+    <ClInclude Include="..\src\SceneBase.h" />
+    <ClInclude Include="..\src\SceneGameplay.h" />
+    <ClInclude Include="..\src\SceneStartup.h" />
     <ClInclude Include="..\src\Trigger.h" />
     <ClInclude Include="..\src\Windmill.h" />
   </ItemGroup>

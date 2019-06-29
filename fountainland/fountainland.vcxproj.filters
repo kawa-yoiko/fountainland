@@ -213,6 +213,12 @@
     <ClCompile Include="..\src\Cloud.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SceneGameplay.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SceneStartup.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Common\b2BlockAllocator.h">
@@ -420,6 +426,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\raylib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SceneBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SceneGameplay.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SceneStartup.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

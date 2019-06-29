@@ -1,5 +1,5 @@
 #include "Trigger.h"
 
-Trigger::Trigger(){
+Trigger::Trigger():Interactable(){
 	isTrigger = true;
 }
