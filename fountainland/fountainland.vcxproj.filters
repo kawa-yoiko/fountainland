@@ -215,9 +215,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="raylib.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\Box2D\Common\b2BlockAllocator.h">
       <Filter>源文件\Box2D</Filter>
     </ClInclude>
@@ -420,6 +417,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Windmill.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\raylib.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

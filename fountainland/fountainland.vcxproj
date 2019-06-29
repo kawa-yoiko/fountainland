@@ -254,6 +254,7 @@
     <ClInclude Include="..\Box2D\Particle\b2StackQueue.h" />
     <ClInclude Include="..\Box2D\Particle\b2VoronoiDiagram.h" />
     <ClInclude Include="..\Box2D\Rope\b2Rope.h" />
+    <ClInclude Include="..\raylib.h" />
     <ClInclude Include="..\src\Bubble.h" />
     <ClInclude Include="..\src\Cloud.h" />
     <ClInclude Include="..\src\Environment.h" />
@@ -263,7 +264,6 @@
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\Trigger.h" />
     <ClInclude Include="..\src\Windmill.h" />
-    <ClInclude Include="raylib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
