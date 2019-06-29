@@ -21,7 +21,7 @@
 
 #include "raylib.h"
 
-//MHY is stupid.
+//MHY is smart.
 
 void draw();
 

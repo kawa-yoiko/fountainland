@@ -182,8 +182,17 @@
     <ClCompile Include="..\Box2D\Particle\b2ParticleSystem.cpp" />
     <ClCompile Include="..\Box2D\Particle\b2VoronoiDiagram.cpp" />
     <ClCompile Include="..\Box2D\Rope\b2Rope.cpp" />
+    <ClCompile Include="..\src\Bubble.cpp" />
+    <ClCompile Include="..\src\Cloud.cpp" />
+    <ClCompile Include="..\src\Environment.cpp" />
+    <ClCompile Include="..\src\Fountain.cpp" />
+    <ClCompile Include="..\src\GameObject.cpp" />
     <ClCompile Include="..\src\hello.cpp" />
     <ClCompile Include="..\src\hi.cpp" />
+    <ClCompile Include="..\src\Interactable.cpp" />
+    <ClCompile Include="..\src\Player.cpp" />
+    <ClCompile Include="..\src\Trigger.cpp" />
+    <ClCompile Include="..\src\Windmill.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Box2D.h" />
@@ -245,6 +254,15 @@
     <ClInclude Include="..\Box2D\Particle\b2StackQueue.h" />
     <ClInclude Include="..\Box2D\Particle\b2VoronoiDiagram.h" />
     <ClInclude Include="..\Box2D\Rope\b2Rope.h" />
+    <ClInclude Include="..\src\Bubble.h" />
+    <ClInclude Include="..\src\Cloud.h" />
+    <ClInclude Include="..\src\Environment.h" />
+    <ClInclude Include="..\src\Fountain.h" />
+    <ClInclude Include="..\src\GameObject.h" />
+    <ClInclude Include="..\src\Interactable.h" />
+    <ClInclude Include="..\src\Player.h" />
+    <ClInclude Include="..\src\Trigger.h" />
+    <ClInclude Include="..\src\Windmill.h" />
     <ClInclude Include="raylib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
