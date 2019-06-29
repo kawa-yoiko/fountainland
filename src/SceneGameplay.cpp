@@ -46,7 +46,7 @@ SceneGameplay::~SceneGameplay()
 
 void SceneGameplay::update(double dt)
 {
-    if (IsKeyPressed(KEY_GRAVE)) {
+    if (IsKeyPressed(KEY_TAB)) {
         popScene();
         return;
     }
@@ -72,7 +72,7 @@ void SceneGameplay::draw()
         Vector2{(float)(SCR_W * 0.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
         40, GRAY,
         Vector2{0.5, 0.5}, 8);
-    drawTextAnchored("Press Grave (`) to go back",
+    drawTextAnchored("Press Tab to go back",
         Vector2{(float)(SCR_W * 1.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
         40, GRAY,
         Vector2{0.5, 0.5}, 8);
