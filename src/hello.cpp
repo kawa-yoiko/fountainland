@@ -19,11 +19,10 @@
 *
 ********************************************************************************************/
 
+#include "Global.h"
+#include "SceneStartup.h"
+
 #include "raylib.h"
-
-//MHY is smart.
-
-void draw();
 
 int main(void)
 {
@@ -36,6 +35,8 @@ int main(void)
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+
+    pushScene(new SceneStartup());
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
