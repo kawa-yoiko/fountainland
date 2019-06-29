@@ -28,12 +28,11 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "Fountain Land");
+    InitWindow(SCR_W, SCR_H, "Fountain Land");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+
+    preload();
     //--------------------------------------------------------------------------------------
 
     pushScene(new SceneStartup());

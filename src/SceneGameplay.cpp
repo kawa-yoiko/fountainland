@@ -22,4 +22,9 @@ void SceneGameplay::update(double dt)
 void SceneGameplay::draw()
 {
     ClearBackground((Color){216, 216, 255});
+
+    drawTextAnchored("Press Grave (`) to go back",
+        (Vector2){SCR_W * 0.5, SCR_H * 0.65},
+        40, GRAY,
+        (Vector2){0.5, 0.5}, 8);
 }

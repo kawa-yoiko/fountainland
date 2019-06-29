@@ -5,6 +5,12 @@
 
 static std::vector<Scene *> sceneStack;
 static double lastTime = -1;
+static Font globalFont;
+
+void preload()
+{
+    globalFont = GetFontDefault();
+}
 
 void pushScene(Scene *scene)
 {
@@ -17,6 +23,17 @@ void popScene()
         delete sceneStack.back();
         sceneStack.pop_back();
     }
+}
+
+Vector2 drawTextAnchored(
+    const char *text, Vector2 pos, int sz, Color c,
+    Vector2 anchor, float spacing)
+{
+    Vector2 textSize = MeasureTextEx(globalFont, text, sz, spacing);
+    DrawTextEx(globalFont, text, (Vector2){
+        pos.x - textSize.x * anchor.x, pos.y - textSize.y * anchor.y
+    }, sz, spacing, c);
+    return textSize;
 }
 
 void draw()
