@@ -247,9 +247,6 @@
     <ClInclude Include="..\Box2D\Rope\b2Rope.h" />
     <ClInclude Include="raylib.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Box2D\Documentation\footer.html" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
