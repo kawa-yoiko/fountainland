@@ -4,4 +4,5 @@
 class Cloud :public Environment {
 public:
 	Cloud();
+	~Cloud() {}
 };
