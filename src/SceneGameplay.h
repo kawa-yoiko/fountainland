@@ -3,6 +3,10 @@
 
 #include "SceneBase.h"
 
+extern "C" {
+#include "kineticroll/kc_linearscroll.h"
+}
+
 class SceneGameplay : public Scene {
 public:
     SceneGameplay();
@@ -10,6 +14,13 @@ public:
 
     virtual void update(double dt) override;
     virtual void draw() override;
+
+    bool isScrollRefreshingX;
+
+protected:
+    kc_linearscroll *_kineti;
+
+    bool _isMouseDown;
 };
 
 #endif
