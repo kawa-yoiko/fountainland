@@ -187,8 +187,8 @@
     <ClCompile Include="..\src\Environment.cpp" />
     <ClCompile Include="..\src\Fountain.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
-    <ClCompile Include="..\src\hello.cpp" />
-    <ClCompile Include="..\src\hi.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Global.cpp" />
     <ClCompile Include="..\src\Interactable.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\SceneGameplay.cpp" />

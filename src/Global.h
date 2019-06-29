@@ -15,7 +15,7 @@ void popScene();
 
 Vector2 drawTextAnchored(
     const char *text, Vector2 pos, int sz, Color c,
-    Vector2 anchor = (Vector2){0.5, 0.5}, float spacing = 0);
+    Vector2 anchor = Vector2{0.5, 0.5}, float spacing = 0);
 
 void draw();
 
