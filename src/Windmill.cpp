@@ -1,6 +1,6 @@
 #include "Windmill.h"
 
-Windmill::Windmill(double x, double y):windSpeed(3.0){
+Windmill::Windmill(float x, float y):windSpeed(3.0){
 	setPosition(Vector2{ x,y });
 	type = Type::Windmill;
 	addToWorld();

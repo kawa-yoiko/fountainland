@@ -3,7 +3,7 @@
 #include "Box2D/Dynamics/Joints/b2RopeJoint.h"
 
 class Windmill :public Environment {
-	Windmill(double x, double y);
+	Windmill(float x, float y);
 	
 	
 
