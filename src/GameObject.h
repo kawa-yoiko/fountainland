@@ -11,7 +11,6 @@ public:
 	bool isPlayer;
 	b2World* getWorld() { return m_world; }
 
-	GameObject();
 private:
 	b2World* m_world;
 };

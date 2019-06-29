@@ -21,3 +21,7 @@ void Bubble::putIntoWorld() {
 	body->CreateFixture(&fixtureDef);
 	return;
 }
+
+void Bubble::trigger() {
+
+}
