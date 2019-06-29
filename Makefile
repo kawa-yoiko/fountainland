@@ -24,7 +24,8 @@
 .PHONY: all clean
 
 # Define all source files required
-PROJECT_SOURCE_FILES = hello.cpp hi.cpp \
+PROJECT_SOURCE_FILES = \
+    $(wildcard src/*.cpp) \
     $(wildcard Box2D/Collision/*.cpp) \
     $(wildcard Box2D/Collision/Shapes/*.cpp) \
     $(wildcard Box2D/Common/*.cpp) \
@@ -35,7 +36,7 @@ PROJECT_SOURCE_FILES = hello.cpp hi.cpp \
     $(wildcard Box2D/Rope/*.cpp)
 
 # Define required raylib variables
-PROJECT_NAME       ?= simple_game
+PROJECT_NAME       ?= fountainland
 RAYLIB_VERSION     ?= 2.5.0
 RAYLIB_API_VERSION ?= 2
 RAYLIB_PATH        ?= C:/raylib/raylib
@@ -113,8 +114,12 @@ endif
 # Required for ldconfig or other tools that do not perform path expansion.
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),LINUX)
+        PROJECT_NAME = fountainland_linux
         RAYLIB_PREFIX ?= ..
         RAYLIB_PATH    = $(realpath $(RAYLIB_PREFIX))
+    endif
+    ifeq ($(PLATFORM_OS),OSX)
+        PROJECT_NAME = fountainland_osx
     endif
 endif
 # Default path for raylib on Raspberry Pi, if installed in different path, update it!
@@ -387,22 +392,22 @@ $(PROJECT_NAME): $(OBJS)
 clean:
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
     ifeq ($(PLATFORM_OS),WINDOWS)
-		del *.o *.exe /s
+		del src/*.o *.exe /s
     endif
     ifeq ($(PLATFORM_OS),LINUX)
 	find -type f -executable | xargs file -i | grep -E 'x-object|x-archive|x-sharedlib|x-executable' | rev | cut -d ':' -f 2- | rev | xargs rm -fv
     endif
     ifeq ($(PLATFORM_OS),OSX)
 		find . -type f -perm +ugo+x -delete
-		rm -f *.o
+		rm -f src/*.o
     endif
 endif
 ifeq ($(PLATFORM),PLATFORM_RPI)
 	find . -type f -executable -delete
-	rm -fv *.o
+	rm -fv src/*.o
 endif
 ifeq ($(PLATFORM),PLATFORM_WEB)
-	del *.o *.html *.js
+	del src/*.o *.html *.js
 endif
 	@echo Cleaning done
 

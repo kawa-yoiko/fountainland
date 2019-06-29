@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\hello.cpp">
+    <ClCompile Include="..\src\hello.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\hi.cpp">
+    <ClCompile Include="..\src\hi.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\Box2D\Collision\b2BroadPhase.cpp">

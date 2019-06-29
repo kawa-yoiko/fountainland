@@ -182,8 +182,8 @@
     <ClCompile Include="..\Box2D\Particle\b2ParticleSystem.cpp" />
     <ClCompile Include="..\Box2D\Particle\b2VoronoiDiagram.cpp" />
     <ClCompile Include="..\Box2D\Rope\b2Rope.cpp" />
-    <ClCompile Include="..\hello.cpp" />
-    <ClCompile Include="..\hi.cpp" />
+    <ClCompile Include="..\src\hello.cpp" />
+    <ClCompile Include="..\src\hi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Box2D.h" />
