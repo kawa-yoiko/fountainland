@@ -407,9 +407,6 @@
     <ClInclude Include="..\src\Bubble.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\GameObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Player.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -438,6 +435,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SceneStartup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GameObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
