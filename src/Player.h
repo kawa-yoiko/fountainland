@@ -7,17 +7,16 @@
 
 class Player :public GameObject {
 public:
-	Player(int x,int y);
+	Player(int x, int y);
 
-	b2ParticleSystem* particleSystem;
 	b2ParticleGroup* playerGroup;
 
 	friend b2ParticleSystem;
 	friend b2ParticleGroup;
 
-	b2Vec2 getLinearVelocity() const{ return playerGroup->GetLinearVelocity(); }
-	void applyLinearImpluse(const b2Vec2& impluse) { playerGroup->ApplyLinearImpulse(impluse); }
-	const b2Vec2 &getPosition() const { return playerGroup->GetPosition(); }
+	Vector2 getLinearVelocity() const;
+	void applyLinearImpluse(const b2Vec2& impluse);
+	const Vector2& getPosition() const;
 private:
 	b2CircleShape playerShape;
 	b2ParticleGroupDef playerDef;

@@ -6,19 +6,19 @@ public:
 	virtual ~Environment() {}
 
 	//Controllable by the player
-	void setAngle(double theta);
+	void setAngle(double theta) { angle = theta; }
 
 	//Called only once at the start of each level.
-	void setPosition(b2Vec2 pos);
+	void setPosition(Vector2 pos) { position = pos; }
 
-	double getAngle() const;
-	b2Vec2 getPosition() const;
+	double getAngle() const { return angle; };
+	Vector2 getPosition() const { return position; }
 
 	Environment();
 
-private:
 	//The angle controlled by the player
 	double angle;
+
 	//Position for the stable environment
-	b2Vec2 position;
+	Vector2 position;
 };

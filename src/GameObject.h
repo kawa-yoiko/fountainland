@@ -10,7 +10,8 @@ public:
 	//Tell whether the game object is player or not
 	bool isPlayer;
 	b2World* getWorld() { return m_world; }
+	b2ParticleSystem* getParticleSystem() { return m_particleSystem; }
 
-private:
 	b2World* m_world;
+	b2ParticleSystem* m_particleSystem;
 };
