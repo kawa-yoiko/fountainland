@@ -187,6 +187,7 @@
     <ClCompile Include="..\src\Environment.cpp" />
     <ClCompile Include="..\src\Fountain.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
+    <ClCompile Include="..\src\Ground.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Global.cpp" />
     <ClCompile Include="..\src\Interactable.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="..\src\Fountain.h" />
     <ClInclude Include="..\src\GameObject.h" />
     <ClInclude Include="..\src\Global.h" />
+    <ClInclude Include="..\src\Ground.h" />
     <ClInclude Include="..\src\Interactable.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\SceneBase.h" />

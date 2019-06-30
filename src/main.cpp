@@ -23,6 +23,7 @@
 #include "SceneStartup.h"
 
 #include "raylib.h"
+#include "Box2D/Box2D.h"
 
 int main(void)
 {
@@ -36,7 +37,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     pushScene(new SceneStartup());
-
+	
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {

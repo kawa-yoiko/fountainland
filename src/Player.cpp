@@ -21,7 +21,7 @@ void Player::applyLinearImpluse(const b2Vec2& impluse){
 	playerGroup->ApplyLinearImpulse(impluse); 
 }
 
-const Vector2& Player::getPosition() const{
+const Vector2 Player::getPosition() const{
 	return Vector2{ playerGroup->GetPosition().x,
 		playerGroup->GetPosition().y };
 }

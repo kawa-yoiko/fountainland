@@ -3,11 +3,14 @@
 #include "Box2D/Dynamics/Joints/b2RopeJoint.h"
 
 class Windmill :public Environment {
-	Windmill(float x, float y);
+public:
+	Windmill();
 	
-	
+	inline void setFanSize(float s) { fanSize = s; }
+        inline float getFanSize() const { return fanSize; }
 
 private:
 	void addToWorld();
+        float fanSize;
 	double windSpeed;
 };

@@ -1,8 +1,7 @@
 #include "Bubble.h"
 
-Bubble::Bubble(Vector2& pos, int size, int impact) : bubblePos(pos), 
+Bubble::Bubble(Vector2 pos, int size, int impact) : bubblePos(pos), 
 bubbleSize(size), bubbleImpact(impact) {
-	putIntoWorld();
 }
 
 void Bubble::putIntoWorld() {

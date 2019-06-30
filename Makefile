@@ -26,6 +26,8 @@
 # Define all source files required
 PROJECT_SOURCE_FILES = \
     $(wildcard src/*.cpp) \
+    $(wildcard src/*.c) \
+    $(wildcard src/kineticroll/*.c) \
     $(wildcard Box2D/Collision/*.cpp) \
     $(wildcard Box2D/Collision/Shapes/*.cpp) \
     $(wildcard Box2D/Common/*.cpp) \
@@ -209,8 +211,10 @@ endif
 #  -D_DEFAULT_SOURCE    use with -std=c99 on Linux and PLATFORM_WEB, required for timespec
 ifeq ($(PLATFORM_OS),OSX)
     CFLAGS += -O2 -Wall -std=c++11 -D_DEFAULT_SOURCE -Wno-missing-braces
+    PFLAGS += -O2 -Wall -D_DEFAULT_SOURCE -Wno-missing-braces
 else
     CFLAGS += -O2 -s -Wall -std=c++11 -D_DEFAULT_SOURCE -Wno-missing-braces -static
+    PFLAGS += -O2 -Wall -D_DEFAULT_SOURCE -Wno-missing-braces
 endif
 
 ifeq ($(BUILD_MODE),DEBUG)
@@ -262,6 +266,8 @@ ifeq ($(PLATFORM),PLATFORM_WEB)
     CFLAGS += --shell-file $(RAYLIB_PATH)\src\shell.html
     EXT = .html
 endif
+
+PFLAGS ?= $(CFLAGS)
 
 # Define include paths for required headers
 # NOTE: Several external required libraries (stb and others)
@@ -381,7 +387,7 @@ all:
 
 # Project target defined by PROJECT_NAME
 $(PROJECT_NAME): $(OBJS)
-	$(CC) -o $(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
+	$(CC) -o $(PROJECT_NAME)$(EXT) $(OBJS) $(PFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
 
 # Compile source files
 # NOTE: This pattern will compile every module defined on $(OBJS)
