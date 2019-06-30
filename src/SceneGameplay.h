@@ -2,6 +2,10 @@
 #define _SCENE_GAMEPLAY_H_
 
 #include "SceneBase.h"
+#include "Bubble.h"
+#include "Cloud.h"
+#include "Fountain.h"
+#include "Windmill.h"
 
 extern "C" {
 #include "kineticroll/kc_linearscroll.h"
@@ -26,6 +30,10 @@ protected:
     bool _isMouseDown;
 
     void drawGround(const std::vector<Vector2> &poly);
+    void drawBubble(Bubble *bubble);
+    void drawCloud(Cloud *cloud);
+    void drawFountain(Fountain *fountain);
+    void drawWindmill(Windmill *windmill);
 };
 
 #endif
