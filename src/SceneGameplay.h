@@ -40,6 +40,7 @@ protected:
     void drawCloud(Cloud *cloud);
     void drawFountain(Fountain *fountain);
     void drawWindmill(Windmill *windmill);
+    void drawPlayer(Player *player);
 
     inline Vector2 posInCam(Vector2 p) {
         return Vector2 {p.x + _cam.x, p.y + _cam.y};

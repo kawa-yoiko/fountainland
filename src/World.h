@@ -25,4 +25,9 @@ public:
 	
 	//Here stores all the interactable objects(fountains, bubbles, windmills, clouds)
 	std::vector<Interactable*> interactableList;
+
+    inline Player *getPlayer() const { return _player; }
+
+protected:
+    Player *_player;
 };

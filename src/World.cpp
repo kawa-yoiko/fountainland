@@ -38,6 +38,7 @@ void World::addPlayer(Player& player){
 	const b2ParticleSystemDef particleSystemDef;
 	player.m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
 	player.addToWorld();
+	_player = &player;
 }
 
 void World::addGround(Ground& ground){

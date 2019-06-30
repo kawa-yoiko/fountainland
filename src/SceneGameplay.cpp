@@ -45,6 +45,9 @@ SceneGameplay::SceneGameplay()
     isScrollRefreshingX = false;
 
     _world = loadLevel("level.txt");
+    Player *player = new Player();
+    player->setPosition(Vector2 {700, 100});
+    _world->addPlayer(*player);
 
     _cam = Vector2 {0, 0};
 }
@@ -73,6 +76,8 @@ void SceneGameplay::update(double dt)
     if (isScrollRefreshingX) {
         kc_activate(_kineti, REFRESH_TICK, dt);
     }
+
+    _world->tick();
 }
 
 void SceneGameplay::draw()
@@ -108,6 +113,8 @@ void SceneGameplay::draw()
         default: puts("OvO");
         }
     }
+
+    this->drawPlayer(_world->getPlayer());
 }
 
 void SceneGameplay::drawGround(Ground *ground)
@@ -172,4 +179,11 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
         (windmill->getAngle() + PI / 2) / PI * 180,
         Color {216, 216, 160, 255}
     );
+}
+
+void SceneGameplay::drawPlayer(Player *player)
+{
+    Vector2 p = player->getPosition();
+    printf("%.4f %.4f\n", p.x, p.y);
+    DrawCircleV(posInCam(p), 25, Color {255, 192, 180, 255});
 }
