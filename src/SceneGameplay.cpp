@@ -1,6 +1,10 @@
 #include "SceneGameplay.h"
 #include "Global.h"
 
+extern "C" {
+#include "shapes_ext.h"
+}
+
 #include "raylib.h"
 
 #include <cstdio>
@@ -76,4 +80,16 @@ void SceneGameplay::draw()
         Vector2{(float)(SCR_W * 1.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
         40, GRAY,
         Vector2{0.5, 0.5}, 8);
+
+    std::vector<Vector2> p;
+    p.push_back(Vector2 {kc_getmypos(_kineti), 0});
+    p.push_back(Vector2 {kc_getmypos(_kineti), SCR_H});
+    p.push_back(Vector2 {kc_getmypos(_kineti) + SCR_W, SCR_H});
+    p.push_back(Vector2 {kc_getmypos(_kineti) + SCR_W / 2, SCR_H * 0.8});
+    this->drawGround(p);
+}
+
+void SceneGameplay::drawGround(const std::vector<Vector2> &poly)
+{
+    DrawPolyFilledConcave(poly.data(), poly.size(), Color {255, 255, 255, 192});
 }

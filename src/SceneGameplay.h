@@ -6,6 +6,9 @@
 extern "C" {
 #include "kineticroll/kc_linearscroll.h"
 }
+#include "raylib.h"
+
+#include <vector>
 
 class SceneGameplay : public Scene {
 public:
@@ -21,6 +24,8 @@ protected:
     kc_linearscroll *_kineti;
 
     bool _isMouseDown;
+
+    void drawGround(const std::vector<Vector2> &poly);
 };
 
 #endif

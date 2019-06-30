@@ -26,6 +26,7 @@
 # Define all source files required
 PROJECT_SOURCE_FILES = \
     $(wildcard src/*.cpp) \
+    $(wildcard src/*.c) \
     $(wildcard src/kineticroll/*.c) \
     $(wildcard Box2D/Collision/*.cpp) \
     $(wildcard Box2D/Collision/Shapes/*.cpp) \
