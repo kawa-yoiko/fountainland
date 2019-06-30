@@ -88,13 +88,6 @@ void SceneGameplay::draw()
         40, GRAY,
         Vector2 {0.5, 0.5}, 8);
 
-    std::vector<Vector2> p;
-    p.push_back(Vector2 {kc_getmypos(_kineti), 0});
-    p.push_back(Vector2 {kc_getmypos(_kineti), SCR_H});
-    p.push_back(Vector2 {kc_getmypos(_kineti) + SCR_W, SCR_H});
-    p.push_back(Vector2 {kc_getmypos(_kineti) + SCR_W / 2, SCR_H * 0.8});
-    this->drawGround(p);
-
     for (Interactable *obj : _world->interactableList) {
         switch (obj->type) {
         case Interactable::Bubble:
@@ -106,18 +99,23 @@ void SceneGameplay::draw()
         case Interactable::Fountain:
             this->drawFountain((Fountain *)obj);
             break;
-        /*case Interactable::Ground:
+        case Interactable::Ground:
             this->drawGround((Ground *)obj);
-            break;*/
+            break;
         case Interactable::Windmill:
             this->drawWindmill((Windmill *)obj);
             break;
+        default: puts("OvO");
         }
     }
 }
 
-void SceneGameplay::drawGround(const std::vector<Vector2> &poly)
+void SceneGameplay::drawGround(Ground *ground)
 {
+    std::vector<Vector2> poly;
+    for (const b2Vec2 &p : ground->getGroundBoundary()) {
+        poly.push_back(posInCam(Vector2 {p.x, p.y}));
+    }
     DrawPolyFilledConcave(poly.data(), poly.size(), Color {216, 234, 192, 192});
 }
 

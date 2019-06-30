@@ -42,10 +42,20 @@ World *loadLevel(const char *path)
             int x, y, vel;
             float a;
             fscanf(f, "%d%d%d%f", &x, &y, &vel, &a);
+            Fountain *fountain = new Fountain();
+            fountain->setPosition(Vector2 {(float)x, (float)y});
+            fountain->setVelocity(vel);
+            fountain->setDirection(a);
+            world->addFountain(*fountain);
         } else if (strcmp(name, "windmill") == 0) {
             int x, y, fansz;
             float a;
             fscanf(f, "%d%d%d%f", &x, &y, &fansz, &a);
+            Windmill *windmill = new Windmill();
+            windmill->setPosition(Vector2 {(float)x, (float)y});
+            windmill->setFanSize(fansz);
+            windmill->setAngle(a);
+            world->addWindmill(*windmill);
         } else puts("> <");
     }
 

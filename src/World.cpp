@@ -43,6 +43,7 @@ void World::addPlayer(Player& player){
 void World::addGround(Ground& ground){
 	ground.m_world = this->m_world;
 	ground.addToWorld();
+	interactableList.push_back(&ground);
 }
 
 void World::tick(){

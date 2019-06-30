@@ -5,6 +5,7 @@
 #include "Bubble.h"
 #include "Cloud.h"
 #include "Fountain.h"
+#include "Ground.h"
 #include "Windmill.h"
 #include "World.h"
 
@@ -34,7 +35,7 @@ protected:
 
     World *_world;
 
-    void drawGround(const std::vector<Vector2> &poly);
+    void drawGround(Ground *ground);
     void drawBubble(Bubble *bubble);
     void drawCloud(Cloud *cloud);
     void drawFountain(Fountain *fountain);
