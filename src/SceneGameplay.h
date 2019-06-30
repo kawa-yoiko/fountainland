@@ -6,6 +6,7 @@
 #include "Cloud.h"
 #include "Fountain.h"
 #include "Windmill.h"
+#include "World.h"
 
 extern "C" {
 #include "kineticroll/kc_linearscroll.h"
@@ -24,16 +25,24 @@ public:
 
     bool isScrollRefreshingX;
 
+    Vector2 _cam;   // XXX
+
 protected:
     kc_linearscroll *_kineti;
 
     bool _isMouseDown;
+
+    World *_world;
 
     void drawGround(const std::vector<Vector2> &poly);
     void drawBubble(Bubble *bubble);
     void drawCloud(Cloud *cloud);
     void drawFountain(Fountain *fountain);
     void drawWindmill(Windmill *windmill);
+
+    inline Vector2 posInCam(Vector2 p) {
+        return Vector2 {p.x + _cam.x, p.y + _cam.y};
+    }
 };
 
 #endif

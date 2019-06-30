@@ -1,5 +1,6 @@
 #include "SceneGameplay.h"
 #include "Global.h"
+#include "LevelLoader.h"
 
 extern "C" {
 #include "shapes_ext.h"
@@ -14,6 +15,7 @@ extern "C" {
 static void updatePos(void *__this, float p)
 {
     SceneGameplay *_this = (SceneGameplay *)__this;
+    _this->_cam.x = p;
 }
 
 static void startRefreshing(void *__this)
@@ -41,6 +43,10 @@ SceneGameplay::SceneGameplay()
 
     _isMouseDown = false;
     isScrollRefreshingX = false;
+
+    _world = loadLevel("level.txt");
+
+    _cam = Vector2 {0, 0};
 }
 
 SceneGameplay::~SceneGameplay()
@@ -74,13 +80,13 @@ void SceneGameplay::draw()
     ClearBackground(Color{234, 244, 255});
 
     drawTextAnchored("Drag me (^-^*)",
-        Vector2{(float)(SCR_W * 0.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
+        posInCam(Vector2 {SCR_W * 0.5, SCR_H * 0.65}),
         40, GRAY,
         Vector2{0.5, 0.5}, 8);
     drawTextAnchored("Press Tab to go back",
-        Vector2{(float)(SCR_W * 1.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
+        posInCam(Vector2 {SCR_W * 1.5, SCR_H * 0.65}),
         40, GRAY,
-        Vector2{0.5, 0.5}, 8);
+        Vector2 {0.5, 0.5}, 8);
 
     std::vector<Vector2> p;
     p.push_back(Vector2 {kc_getmypos(_kineti), 0});
@@ -89,38 +95,25 @@ void SceneGameplay::draw()
     p.push_back(Vector2 {kc_getmypos(_kineti) + SCR_W / 2, SCR_H * 0.8});
     this->drawGround(p);
 
-    Bubble b(
-        Vector2 {(float)(SCR_W * 1.2 + kc_getmypos(_kineti)), SCR_H * 0.6},
-        20, 10
-    );
-    this->drawBubble(&b);
-
-    Cloud c;
-    c.setPosition(
-        Vector2 {(float)(SCR_W * 1.5 + kc_getmypos(_kineti)), SCR_H * 0.2}
-    );
-    c.setSize(Vector2 {90, 45});
-    this->drawCloud(&c);
-    c.setSize(Vector2 {120, 60});
-    this->drawCloud(&c);
-    c.setAngle(-PI / 6);
-    this->drawCloud(&c);
-
-    Fountain f;
-    f.setVelocity(10);
-    f.setPosition(
-        Vector2 {(float)(SCR_W * 0.5 + kc_getmypos(_kineti)), SCR_H * 0.65}
-    );
-    f.setDirection(PI / 6);
-    this->drawFountain(&f);
-
-    Windmill w;
-    w.setPosition(
-        Vector2 {(float)(SCR_W * 1.75 + kc_getmypos(_kineti)), SCR_H * 0.7}
-    );
-    w.setFanSize(100);
-    w.setAngle(kc_getmypos(_kineti) / 100);
-    this->drawWindmill(&w);
+    for (Interactable *obj : _world->interactableList) {
+        switch (obj->type) {
+        case Interactable::Bubble:
+            this->drawBubble((Bubble *)obj);
+            break;
+        case Interactable::Cloud:
+            this->drawCloud((Cloud *)obj);
+            break;
+        case Interactable::Fountain:
+            this->drawFountain((Fountain *)obj);
+            break;
+        /*case Interactable::Ground:
+            this->drawGround((Ground *)obj);
+            break;*/
+        case Interactable::Windmill:
+            this->drawWindmill((Windmill *)obj);
+            break;
+        }
+    }
 }
 
 void SceneGameplay::drawGround(const std::vector<Vector2> &poly)
@@ -131,12 +124,12 @@ void SceneGameplay::drawGround(const std::vector<Vector2> &poly)
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
     Color c = Color {200, 216, 255, 216};
-    DrawCircleV(bubble->bubblePos, bubble->bubbleSize, c);
+    DrawCircleV(posInCam(bubble->bubblePos), bubble->bubbleSize, c);
 }
 
 void SceneGameplay::drawCloud(Cloud *cloud)
 {
-    Vector2 p = cloud->getPosition();
+    Vector2 p = posInCam(cloud->getPosition());
     Vector2 s = cloud->getSize();
     DrawRectanglePro(
         Rectangle {p.x, p.y, s.x, s.y},
@@ -148,7 +141,7 @@ void SceneGameplay::drawCloud(Cloud *cloud)
 
 void SceneGameplay::drawFountain(Fountain *fountain)
 {
-    Vector2 p = fountain->getPosition();
+    Vector2 p = posInCam(fountain->getPosition());
     int v = fountain->getVelocity();
     double a = fountain->getDirection();
     DrawLineEx(
@@ -161,7 +154,7 @@ void SceneGameplay::drawFountain(Fountain *fountain)
 
 void SceneGameplay::drawWindmill(Windmill *windmill)
 {
-    Vector2 p = windmill->getPosition();
+    Vector2 p = posInCam(windmill->getPosition());
     float s = windmill->getFanSize();
     DrawLineEx(
         p,
