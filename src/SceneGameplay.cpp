@@ -71,7 +71,7 @@ void SceneGameplay::update(double dt)
 
 void SceneGameplay::draw()
 {
-    ClearBackground(Color{216, 216, 255});
+    ClearBackground(Color{234, 244, 255});
 
     drawTextAnchored("Drag me (^-^*)",
         Vector2{(float)(SCR_W * 0.5 + kc_getmypos(_kineti)), SCR_H * 0.65},
@@ -125,12 +125,12 @@ void SceneGameplay::draw()
 
 void SceneGameplay::drawGround(const std::vector<Vector2> &poly)
 {
-    DrawPolyFilledConcave(poly.data(), poly.size(), Color {216, 255, 192, 192});
+    DrawPolyFilledConcave(poly.data(), poly.size(), Color {216, 234, 192, 192});
 }
 
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
-    Color c = Color {216, 234, 255, 216};
+    Color c = Color {200, 216, 255, 216};
     DrawCircleV(bubble->bubblePos, bubble->bubbleSize, c);
 }
 
@@ -142,7 +142,7 @@ void SceneGameplay::drawCloud(Cloud *cloud)
         Rectangle {p.x, p.y, s.x, s.y},
         Vector2 {s.x / 2, s.y / 2},
         cloud->getAngle() / PI * 180,
-        Color {234, 255, 255, 216}
+        Color {244, 255, 255, 216}
     );
 }
 
