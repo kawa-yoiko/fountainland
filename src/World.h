@@ -2,7 +2,6 @@
 #include "Box2D/Dynamics/b2World.h"
 #include "Box2D/Particle/b2ParticleSystem.h"
 #include "Box2D/Particle/b2ParticleGroup.h"
-#include <vector>
 #include "Windmill.h"
 #include "Bubble.h"
 #include "Cloud.h"
@@ -21,6 +20,4 @@ public:
 	void addPlayer(Player& player);
 	void tick();
 	
-	//Here stores all the interactable objects(fountains, bubbles, windmills, clouds)
-	std::vector<Interactable*> interactableList;
 };

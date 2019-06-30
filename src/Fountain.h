@@ -3,7 +3,7 @@
 
 class Fountain : public Environment {
 public:
-	Fountain();
+	Fountain() : velocity(1), time(0), direction(0) {}
 	~Fountain() {}
 	void emitWater();
 	void drawFountain();
