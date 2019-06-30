@@ -1,5 +1,9 @@
 #include "Fountain.h"
 
+Fountain::Fountain() : velocity(1), time(0), direction(0) {
+	type = Type::Fountain;
+}
+
 void Fountain::emitWater() {
 	int m_count = 0;
 	const int e_count = 1000;
