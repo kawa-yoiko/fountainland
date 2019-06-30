@@ -53,5 +53,6 @@ void draw()
     if (!sceneStack.empty()) {
         sceneStack.back()->update(dt);
         sceneStack.back()->draw();
+        sceneStack.back()->widgetsDraw();
     }
 }
