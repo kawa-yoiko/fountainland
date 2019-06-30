@@ -7,7 +7,7 @@
 
 class Player :public GameObject {
 public:
-	Player(float x, float y);
+	Player(float x = 0.0, float y = 0.0);
 
 	b2ParticleGroup* playerGroup;
 
@@ -17,7 +17,10 @@ public:
 	Vector2 getLinearVelocity() const;
 	void applyLinearImpluse(const b2Vec2& impluse);
 	const Vector2 getPosition() const;
+	void setPosition(Vector2 pos) { playerInitPos = pos; }
+	void addToWorld();
 private:
+	Vector2 playerInitPos;
 	b2CircleShape playerShape;
 	b2ParticleGroupDef playerDef;
 };

@@ -1,7 +1,6 @@
 #include "Windmill.h"
 
-Windmill::Windmill()
-{
+Windmill::Windmill():fanSize(0.0f),windSpeed(0.0f){
 	type = Type::Windmill;
 }
 

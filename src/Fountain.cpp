@@ -3,7 +3,7 @@
 void Fountain::emitWater() {
 	int m_count = 0;
 	const int e_count = 1000;
-	if (m_count < e_count)
+	while (m_count < e_count)
 	{
 		b2BodyDef bd;
 		bd.type = b2_dynamicBody;

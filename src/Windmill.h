@@ -7,10 +7,12 @@ public:
 	Windmill();
 	
 	inline void setFanSize(float s) { fanSize = s; }
-        inline float getFanSize() const { return fanSize; }
+    inline float getFanSize() const { return fanSize; }
+
+	friend class World;
 
 private:
 	void addToWorld();
-        float fanSize;
+    float fanSize;
 	double windSpeed;
 };

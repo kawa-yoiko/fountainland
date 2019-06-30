@@ -220,7 +220,10 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Ground.cpp">
-      <Filter>头文件</Filter>
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\World.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -444,6 +447,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Ground.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\World.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

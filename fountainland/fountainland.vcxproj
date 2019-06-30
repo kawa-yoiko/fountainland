@@ -196,6 +196,7 @@
     <ClCompile Include="..\src\SceneStartup.cpp" />
     <ClCompile Include="..\src\Trigger.cpp" />
     <ClCompile Include="..\src\Windmill.cpp" />
+    <ClCompile Include="..\src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Box2D.h" />
@@ -272,6 +273,7 @@
     <ClInclude Include="..\src\SceneStartup.h" />
     <ClInclude Include="..\src\Trigger.h" />
     <ClInclude Include="..\src\Windmill.h" />
+    <ClInclude Include="..\src\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

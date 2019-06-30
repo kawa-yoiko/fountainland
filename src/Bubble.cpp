@@ -2,6 +2,7 @@
 
 Bubble::Bubble(Vector2 pos, int size, int impact) : bubblePos(pos), 
 bubbleSize(size), bubbleImpact(impact) {
+	type = Type::Bubble;
 }
 
 void Bubble::putIntoWorld() {
