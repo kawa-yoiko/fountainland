@@ -23,5 +23,6 @@ void Bubble::putIntoWorld() {
 }
 
 void Bubble::trigger() {
+	const float radius = 20.0f;
 
 }
