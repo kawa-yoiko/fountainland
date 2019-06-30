@@ -1,6 +1,7 @@
 #include "Cloud.h"
 
 Cloud::Cloud() {
+	type = Type::Cloud;
 }
 
 void Cloud::putIntoWorld()
