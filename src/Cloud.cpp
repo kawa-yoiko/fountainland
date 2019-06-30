@@ -11,7 +11,7 @@ void Cloud::putIntoWorld()
 	double cloudAngle = getAngle();
 
 	b2World* world = getWorld();
-	b2ParticleSystem* particleSystem = world->GetParticleSystemList();
+	b2ParticleSystem* particleSystem = getParticleSystem();
 	//should differ the cloud particle system and the player particle system
 	//cloudParticleSystemDef.elasticStrength = 1.0f
 	b2PolygonShape shape;
@@ -27,8 +27,12 @@ void Cloud::putIntoWorld()
 
 	//this should not affect the player
 	particleSystem->SetGravityScale(0);
-	//this should be done every step in the world
-	for (int i = 0; i < m_particleSystem->GetParticleCount(); ++ i) {
+	
+}
+
+//this should be done every step in the world
+void Cloud::beforeTick() {
+	for (int i = 0; i < m_particleSystem->GetParticleCount(); ++i) {
 		m_particleSystem->GetVelocityBuffer()[i] = b2Vec2_zero;
 	}
 }

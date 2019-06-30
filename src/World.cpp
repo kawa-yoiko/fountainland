@@ -46,5 +46,7 @@ void World::tick(){
 	int32 velocityIterations = 8;
 	int32 positionIterations = 3;
 	int32 particleIterations = b2CalculateParticleIterations(10, 0.04f, 1 / hz);
+	for (auto&& it : interactableList)
+		it->beforeTick();
 	m_world->Step(timeStep, velocityIterations, positionIterations, particleIterations);
 }

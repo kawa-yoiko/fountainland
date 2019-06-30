@@ -309,8 +309,8 @@ void DrawCirclesBegin(float r, int segs)
 {
     circleSegs = segs;
     for (int i = 0; i <= segs; i++) {
-        sinTable[i] = sinf(M_PI * 2 / segs * i) * r;
-        cosTable[i] = cosf(M_PI * 2 / segs * i) * r;
+        sinTable[i] = sinf(PI * 2 / segs * i) * r;
+        cosTable[i] = cosf(PI * 2 / segs * i) * r;
     }
     rlBegin(RL_TRIANGLES);
 }

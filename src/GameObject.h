@@ -11,6 +11,7 @@ public:
 	bool isPlayer;
 	b2World* getWorld() { return m_world; }
 	b2ParticleSystem* getParticleSystem() { return m_particleSystem; }
+	virtual void beforeTick() {}
 
 	b2World* m_world;
 	b2ParticleSystem* m_particleSystem;

@@ -225,6 +225,15 @@
     <ClCompile Include="..\src\World.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SceneBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\kineticroll\kc_linearscroll.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shapes_ext.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Common\b2BlockAllocator.h">
@@ -450,6 +459,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\World.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\kineticroll\kc_linearscroll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\kineticroll\kc_types.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shapes_ext.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
