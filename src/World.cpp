@@ -9,20 +9,20 @@ World::World(){
 void World::addWindmill(Windmill& windmill){
 	windmill.m_world = this->m_world;
 	windmill.addToWorld();
-	gameObjectList.push_back(&windmill);
+	interactableList.push_back(&windmill);
 }
 
 void World::addBubble(Bubble& bubble){
 	bubble.m_world = this->m_world;
 	bubble.putIntoWorld();
-	gameObjectList.push_back(&bubble);
+	interactableList.push_back(&bubble);
 }
 
 void World::addFountain(Fountain& fountain){
 	fountain.m_world = this->m_world;
 	fountain.drawFountain();
 	fountain.emitWater();
-	gameObjectList.push_back(&fountain);
+	interactableList.push_back(&fountain);
 }
 
 void World::addCloud(Cloud& cloud){
@@ -30,7 +30,7 @@ void World::addCloud(Cloud& cloud){
 	const b2ParticleSystemDef particleSystemDef;
 	cloud.m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
 	cloud.putIntoWorld();
-	gameObjectList.push_back(&cloud);
+	interactableList.push_back(&cloud);
 }
 
 void World::addPlayer(Player& player){
