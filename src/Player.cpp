@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int x,int y):GameObject(),playerGroup(nullptr){
+Player::Player(float x,float y):GameObject(),playerGroup(nullptr){
 	isPlayer = true;
 	playerShape.m_p.Set(x, y);
 	playerShape.m_radius = 0.2f;

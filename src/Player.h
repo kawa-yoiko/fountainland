@@ -7,7 +7,7 @@
 
 class Player :public GameObject {
 public:
-	Player(int x, int y);
+	Player(float x, float y);
 
 	b2ParticleGroup* playerGroup;
 
