@@ -11,15 +11,17 @@ public:
 
 	b2ParticleGroup* playerGroup;
 
-	friend b2ParticleSystem;
-	friend b2ParticleGroup;
+	friend class b2ParticleSystem;
+	friend class b2ParticleGroup;
+	friend class World;
 
 	Vector2 getLinearVelocity() const;
 	void applyLinearImpluse(const b2Vec2& impluse);
 	const Vector2 getPosition() const;
 	void setPosition(Vector2 pos) { playerInitPos = pos; }
-	void addToWorld();
+	
 private:
+	void addToWorld();
 	Vector2 playerInitPos;
 	b2CircleShape playerShape;
 	b2ParticleGroupDef playerDef;

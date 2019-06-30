@@ -8,6 +8,7 @@ public:
 		Cloud,
 		Fountain,
 		Windmill,
+		Ground,
 		TypeCount
 	};
 

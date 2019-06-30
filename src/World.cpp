@@ -40,6 +40,11 @@ void World::addPlayer(Player& player){
 	player.addToWorld();
 }
 
+void World::addGround(Ground& ground){
+	ground.m_world = this->m_world;
+	ground.addToWorld();
+}
+
 void World::tick(){
 	float32 hz = 60.0f;
 	float32 timeStep = 1.0f / hz;

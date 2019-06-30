@@ -8,6 +8,7 @@
 #include "Cloud.h"
 #include "Fountain.h"
 #include "Player.h"
+#include "Ground.h"
 
 class World {
 public:
@@ -19,6 +20,7 @@ public:
 	void addFountain(Fountain& fountain);
 	void addCloud(Cloud& cloud);
 	void addPlayer(Player& player);
+	void addGround(Ground& ground);
 	void tick();
 	
 	//Here stores all the interactable objects(fountains, bubbles, windmills, clouds)

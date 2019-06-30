@@ -6,8 +6,7 @@ public:
 	Cloud();
 	~Cloud() {}
 
-    // XXX: Should this be a base class interface?
-    void putIntoWorld();
+	friend class World;
 
     void setSize(Vector2 s) { size = s; }
     inline Vector2 getSize() const { return size; }
@@ -15,4 +14,7 @@ public:
 	void beforeTick() override;
 protected:
     Vector2 size;
+private:
+	// XXX: Should this be a base class interface?
+    void putIntoWorld();
 };
