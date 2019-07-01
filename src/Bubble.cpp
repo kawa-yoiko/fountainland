@@ -6,21 +6,6 @@ bubbleSize(size), bubbleImpact(impact), bubbleBody(nullptr) {
 }
 
 void Bubble::putIntoWorld() {
-	b2World* world = getWorld();
-	b2BodyDef bodyDef;
-	bodyDef.position.Set(bubblePos.x, bubblePos.y);
-	b2Body* body = world->CreateBody(&bodyDef);
-	b2CircleShape bubbleShape;
-	bubbleShape.m_p.Set(bubblePos.x, bubblePos.y);
-	bubbleShape.m_radius = bubbleSize;
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &bubbleShape;
-	//density & friction defaulted
-	//impact to be done
-	//color to be done?
-	body->CreateFixture(&fixtureDef);
-	bubbleBody = body;
-	return;
 }
 
 void Bubble::trigger() {
@@ -36,14 +21,10 @@ void Bubble::trigger() {
 		}
 		p = p->GetNext();
 	}
-	m_world->DestroyBody(bubbleBody);//The bubble has already exploded.
-	bubbleBody = nullptr;//May cause error?? I am not sure how to do this.
 	return;
 }
 
 Bubble::~Bubble(){
-	if(bubbleBody)
-		m_world->DestroyBody(bubbleBody);
 	if (m_particleSystem)
 		m_world->DestroyParticleSystem(m_particleSystem);
 }

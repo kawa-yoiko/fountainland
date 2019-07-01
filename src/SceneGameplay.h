@@ -16,7 +16,7 @@ extern "C" {
 
 #include <vector>
 
-class Knob;
+class Widget;
 
 class SceneGameplay : public Scene {
 public:
@@ -30,7 +30,7 @@ public:
 
     Vector2 _cam;   // XXX
 
-    std::vector<Knob *> _knobs;
+    std::vector<Widget *> _stageWidgets;
 
     constexpr static const float SCALE = 10;
 

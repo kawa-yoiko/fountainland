@@ -19,9 +19,9 @@ static void updatePos(void *__this, float p)
     SceneGameplay *_this = (SceneGameplay *)__this;
     float lastX = _this->_cam.x;
     _this->_cam.x = p;
-    for (Knob *k : _this->_knobs) {
-        Vector2 pos = k->getPosition();
-        k->setPosition(Vector2 {pos.x + (p - lastX), pos.y});
+    for (Widget *w : _this->_stageWidgets) {
+        Vector2 pos = w->getPosition();
+        w->setPosition(Vector2 {pos.x + (p - lastX), pos.y});
     }
 }
 
@@ -55,7 +55,7 @@ SceneGameplay::SceneGameplay()
     _world = loadLevel("level.txt");
     if (!_world) _world = loadLevel("../level.txt");
     Player *player = new Player();
-    player->setPosition(Vector2 {10, 0});
+    player->setPosition(Vector2 {14, 0});
     _world->addPlayer(player);
 
     _cam = Vector2 {0, 0};
@@ -71,13 +71,28 @@ SceneGameplay::SceneGameplay()
 
     for (Interactable *obj : _world->interactableList) {
         if (!obj->isTrigger) {  // XXX: Add isKnobSetup?
+            Knob *knob = new Knob([obj] (double val) {
+                ((Environment *)obj)->setAngle(val);
+            });
+            Vector2 p = ((Environment *)obj)->getPosition();
+            knob->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
+            this->addWidget(knob);
+            _stageWidgets.push_back(knob);
+        } else {    // XXX: Add support for things other than bubbles
+            Button *button = new Button(
+                LoadTexture("Sprite-0003.png"),
+                LoadTexture("Sprite-0004.png"),
+                Vector2 {0.5, 0.5},
+                [obj] () {
+                    ((Trigger *)obj)->trigger();
+                }
+            );
+            Vector2 p = ((Bubble *)obj)->bubblePos;
+            button->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
+            this->addWidget(button);
+            _stageWidgets.push_back(button);
         }
     }
-
-    Knob *knob = new Knob([] (double val) { printf("%.4f\n", val); });
-    knob->setPosition(Vector2 {SCR_W / 2, SCR_H / 2});
-    this->addWidget(knob);
-    _knobs.push_back(knob);
 }
 
 SceneGameplay::~SceneGameplay()
@@ -131,7 +146,7 @@ void SceneGameplay::draw()
             break;
         case Interactable::Fountain:
             this->drawFountain((Fountain *)obj);
-            ((Fountain *)obj)->emitWater();
+            //((Fountain *)obj)->emitWater();
             break;
         case Interactable::Ground:
             this->drawGround((Ground *)obj);
@@ -157,8 +172,8 @@ void SceneGameplay::drawGround(Ground *ground)
 
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
-    Color c = Color {200, 216, 255, 216};
-    DrawCircleV(posInCam(bubble->bubblePos), bubble->bubbleSize, c);
+    //Color c = Color {200, 216, 255, 216};
+    //DrawCircleV(posInCam(bubble->bubblePos), bubble->bubbleSize, c);
 }
 
 void SceneGameplay::drawCloud(Cloud *cloud)
