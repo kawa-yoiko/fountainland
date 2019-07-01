@@ -212,7 +212,7 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 void SceneGameplay::drawPlayer(Player *player)
 {
  //   return;
-    Vector2 p = player->getLinearVelocity();
+    b2Vec2 p = player->getLinearVelocity()[0];
     printf("%.4f %.4f\n", p.x, p.y);
-    DrawCircleV(posInCam(p), 25, Color {255, 192, 180, 255});
+	DrawCircleV(posInCam(Vector2{ p.x, p.y }), 25, Color{ 255, 192, 180, 255 });
 }
