@@ -234,6 +234,15 @@
     <ClCompile Include="..\src\shapes_ext.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\WidgetKnob.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\LevelLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WidgetButton.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Box2D\Common\b2BlockAllocator.h">
@@ -468,6 +477,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\shapes_ext.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WidgetButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WidgetKnob.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\LevelLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

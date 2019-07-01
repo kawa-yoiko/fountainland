@@ -189,6 +189,7 @@
     <ClCompile Include="..\src\GameObject.cpp" />
     <ClCompile Include="..\src\Ground.cpp" />
     <ClCompile Include="..\src\kineticroll\kc_linearscroll.c" />
+    <ClCompile Include="..\src\LevelLoader.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Global.cpp" />
     <ClCompile Include="..\src\Interactable.cpp" />
@@ -198,6 +199,8 @@
     <ClCompile Include="..\src\SceneStartup.cpp" />
     <ClCompile Include="..\src\shapes_ext.c" />
     <ClCompile Include="..\src\Trigger.cpp" />
+    <ClCompile Include="..\src\WidgetButton.cpp" />
+    <ClCompile Include="..\src\WidgetKnob.cpp" />
     <ClCompile Include="..\src\Windmill.cpp" />
     <ClCompile Include="..\src\World.cpp" />
   </ItemGroup>
@@ -272,12 +275,15 @@
     <ClInclude Include="..\src\Interactable.h" />
     <ClInclude Include="..\src\kineticroll\kc_linearscroll.h" />
     <ClInclude Include="..\src\kineticroll\kc_types.h" />
+    <ClInclude Include="..\src\LevelLoader.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\SceneBase.h" />
     <ClInclude Include="..\src\SceneGameplay.h" />
     <ClInclude Include="..\src\SceneStartup.h" />
     <ClInclude Include="..\src\shapes_ext.h" />
     <ClInclude Include="..\src\Trigger.h" />
+    <ClInclude Include="..\src\WidgetButton.h" />
+    <ClInclude Include="..\src\WidgetKnob.h" />
     <ClInclude Include="..\src\Windmill.h" />
     <ClInclude Include="..\src\World.h" />
   </ItemGroup>

@@ -4,7 +4,7 @@
 class Cloud :public Environment {
 public:
 	Cloud();
-	~Cloud() {}
+	~Cloud();
 
 	friend class World;
 

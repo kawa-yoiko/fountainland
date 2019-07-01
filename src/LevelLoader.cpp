@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "LevelLoader.h"
 
 #include "raylib.h"
@@ -22,12 +23,12 @@ World *loadLevel(const char *path)
                 p.push_back(b2Vec2(x, y));
             }
             ground->setGroundBoundary(p);
-            world->addGround(*ground);
+            world->addGround(ground);
         } else if (strcmp(name, "bubble") == 0) {
             int x, y, sz, imp;
             fscanf(f, "%d%d%d%d", &x, &y, &sz, &imp);
             Bubble *bubble = new Bubble(Vector2 {(float)x, (float)y}, sz, imp);
-            world->addBubble(*bubble);
+            world->addBubble(bubble);
         } else if (strcmp(name, "cloud") == 0) {
             int x, y, w, h;
             float a;
@@ -36,7 +37,7 @@ World *loadLevel(const char *path)
             cloud->setPosition(Vector2 {(float)x, (float)y});
             cloud->setSize(Vector2 {(float)w, (float)h});
             cloud->setAngle(a);
-            world->addCloud(*cloud);
+            world->addCloud(cloud);
         } else if (strcmp(name, "fountain") == 0) {
             // TODO: Cycle
             int x, y, vel;
@@ -46,7 +47,7 @@ World *loadLevel(const char *path)
             fountain->setPosition(Vector2 {(float)x, (float)y});
             fountain->setVelocity(vel);
             fountain->setDirection(a);
-            world->addFountain(*fountain);
+            world->addFountain(fountain);
         } else if (strcmp(name, "windmill") == 0) {
             int x, y, fansz;
             float a;
@@ -55,7 +56,7 @@ World *loadLevel(const char *path)
             windmill->setPosition(Vector2 {(float)x, (float)y});
             windmill->setFanSize(fansz);
             windmill->setAngle(a);
-            world->addWindmill(*windmill);
+            world->addWindmill(windmill);
         } else puts("> <");
     }
 

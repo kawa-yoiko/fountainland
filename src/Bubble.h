@@ -8,7 +8,7 @@ public:
 	friend class World;
 
 	void trigger() override;
-	~Bubble() {}
+	~Bubble();
 public: // TODO: Use get/set
 	Vector2 bubblePos;
 	float32 bubbleSize;

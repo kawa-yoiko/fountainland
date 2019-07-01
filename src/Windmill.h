@@ -5,6 +5,7 @@
 class Windmill :public Environment {
 public:
 	Windmill();
+	~Windmill();
 	
 	inline void setFanSize(float s) { fanSize = s; }
     inline float getFanSize() const { return fanSize; }
@@ -15,4 +16,6 @@ private:
 	void addToWorld();
     float fanSize;
 	double windSpeed;
+	b2Body* polygon_body;
+	b2Body* ground;
 };

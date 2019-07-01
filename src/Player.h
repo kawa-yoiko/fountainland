@@ -8,6 +8,7 @@
 class Player :public GameObject {
 public:
 	Player(float x = 0.0, float y = 0.0);
+	~Player();
 
 	b2ParticleGroup* playerGroup;
 

@@ -4,6 +4,11 @@ Cloud::Cloud() {
 	type = Type::Cloud;
 }
 
+Cloud::~Cloud(){
+	if(m_particleSystem)
+		m_world->DestroyParticleSystem(m_particleSystem);
+}
+
 void Cloud::putIntoWorld()
 {
 	const int length = 40.0f, width = 20.0f;

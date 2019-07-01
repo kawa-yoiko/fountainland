@@ -46,10 +46,10 @@ SceneGameplay::SceneGameplay()
     _isMouseDown = false;
     isScrollRefreshingX = false;
 
-    _world = loadLevel("level.txt");
+    _world = loadLevel("../level.txt");
     Player *player = new Player();
     player->setPosition(Vector2 {700, 100});
-    _world->addPlayer(*player);
+    _world->addPlayer(player);
 
     _cam = Vector2 {0, 0};
 

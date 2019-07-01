@@ -4,7 +4,7 @@
 class Fountain : public Environment {
 public:
 	Fountain();
-	~Fountain() {}
+	~Fountain();
 	void emitWater();
 	void drawFountain();// not used.
 
@@ -19,4 +19,5 @@ private:
 	int time; //ms(how often does it emit water)
 	double direction;
 	bool isEmitting;
+	b2Body* fountainBody;
 };

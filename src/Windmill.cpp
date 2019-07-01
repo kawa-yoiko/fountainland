@@ -1,15 +1,21 @@
 #include "Windmill.h"
 
-Windmill::Windmill():fanSize(0.0f),windSpeed(0.0f){
+Windmill::Windmill():fanSize(0.0f),windSpeed(0.0f),polygon_body(nullptr),ground(nullptr){
 	type = Type::Windmill;
 }
 
+Windmill::~Windmill(){
+	if(ground)
+		m_world->DestroyBody(ground);
+	if(polygon_body)
+		m_world->DestroyBody(polygon_body);
+}
+
 void Windmill::addToWorld(){
-	b2Body* ground = nullptr;
 	b2BodyDef bd;
 	ground = m_world->CreateBody(&bd);
 	b2PolygonShape polygon_shape[2];
-	b2Body* polygon_body;
+	
 	b2BodyDef polygon_bd;
 	polygon_bd.position.Set(position.x, position.y);
 	polygon_bd.type = b2_dynamicBody;

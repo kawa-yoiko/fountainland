@@ -1,7 +1,12 @@
 #include "Fountain.h"
 
-Fountain::Fountain() : velocity(1), time(0), direction(0), isEmitting(0) {
+Fountain::Fountain() : velocity(1), time(0), direction(0), isEmitting(false), fountainBody(nullptr) {
 	type = Type::Fountain;
+}
+
+Fountain::~Fountain(){
+	if (fountainBody)
+		m_world->DestroyBody(fountainBody);
 }
 
 void Fountain::emitWater() {
@@ -30,15 +35,15 @@ void Fountain::drawFountain() {
 	b2BodyDef bd;
 	bd.position.Set(position.x, position.y);
 	bd.angle = angle;
-	b2Body* body = m_world->CreateBody(&bd);
+	fountainBody = m_world->CreateBody(&bd);
 
 	b2PolygonShape shape;
 	shape.SetAsBox(1.0f, 0.2f, bd.position - b2Vec2{ 0.2f * (float)sin(angle), - 0.2f * (float)cos(angle) }, angle);
-	body->CreateFixture(&shape, 5.0f);
+	fountainBody->CreateFixture(&shape, 5.0f);
 	shape.SetAsBox(0.3f, 0.2f, bd.position - b2Vec2{ 0.2f * (float)cos(angle), 0.2f * (float)sin(angle) }, 90 - angle);
-	body->CreateFixture(&shape, 5.0f);
+	fountainBody->CreateFixture(&shape, 5.0f);
 	shape.SetAsBox(1.0f, 0.2f, bd.position + b2Vec2{ 0.2f * (float)sin(angle), - 0.2f * (float)cos(angle) }, angle);
-	body->CreateFixture(&shape, 5.0f);
+	fountainBody->CreateFixture(&shape, 5.0f);
 	
 	return;
 }

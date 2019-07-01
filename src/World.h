@@ -13,14 +13,15 @@
 class World {
 public:
 	World();
+	~World();
 	b2World* m_world;
 
-	void addWindmill(Windmill& windmill);
-	void addBubble(Bubble& bubble);
-	void addFountain(Fountain& fountain);
-	void addCloud(Cloud& cloud);
-	void addPlayer(Player& player);
-	void addGround(Ground& ground);
+	void addWindmill(Windmill* windmill);
+	void addBubble(Bubble* bubble);
+	void addFountain(Fountain* fountain);
+	void addCloud(Cloud* cloud);
+	void addPlayer(Player* player);
+	void addGround(Ground* ground);
 	void tick();
 	
 	//Here stores all the interactable objects(fountains, bubbles, windmills, clouds)

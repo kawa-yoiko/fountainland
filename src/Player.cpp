@@ -6,6 +6,11 @@ Player::Player(float x,float y):GameObject(),playerGroup(nullptr){
 	playerInitPos.y = y;
 }
 
+Player::~Player(){
+	if(m_particleSystem)
+		m_world->DestroyParticleSystem(m_particleSystem);
+}
+
 Vector2 Player::getLinearVelocity() const{
 	return Vector2{ playerGroup->GetLinearVelocity().x,
 		playerGroup->GetLinearVelocity().y };

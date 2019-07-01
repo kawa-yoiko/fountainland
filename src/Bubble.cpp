@@ -40,3 +40,10 @@ void Bubble::trigger() {
 	bubbleBody = nullptr;//May cause error?? I am not sure how to do this.
 	return;
 }
+
+Bubble::~Bubble(){
+	if(bubbleBody)
+		m_world->DestroyBody(bubbleBody);
+	if (m_particleSystem)
+		m_world->DestroyParticleSystem(m_particleSystem);
+}
