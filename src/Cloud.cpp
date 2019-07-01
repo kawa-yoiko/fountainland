@@ -5,8 +5,6 @@ Cloud::Cloud() {
 }
 
 Cloud::~Cloud(){
-	if(m_particleSystem)
-		m_world->DestroyParticleSystem(m_particleSystem);
 }
 
 void Cloud::putIntoWorld()
@@ -28,18 +26,13 @@ void Cloud::putIntoWorld()
 	pd.position.Set(0, 0);
 	pd.shape = &shape;
 //	pd.color.Set(0, 0, 255, 255);
-	particleSystem->SetRadius(0.25f);
-	particleSystem->CreateParticleGroup(pd);
-
-	//this should not affect the player
-	particleSystem->SetGravityScale(0);
+	_cloudGroup=particleSystem->CreateParticleGroup(pd);
 	
 	_particleSys = particleSystem;
 }
 
 //this should be done every step in the world
 void Cloud::beforeTick() {
-	for (int i = 0; i < m_particleSystem->GetParticleCount(); ++i) {
-		m_particleSystem->GetVelocityBuffer()[i] = b2Vec2_zero;
-	}
+	b2Vec2 gravity(0.0f, 10.0f);
+	_cloudGroup->ApplyForce(_cloudGroup->GetMass() * gravity);
 }

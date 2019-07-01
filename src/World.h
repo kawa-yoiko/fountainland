@@ -15,6 +15,7 @@ public:
 	World();
 	~World();
 	b2World* m_world;
+	b2ParticleSystem* m_particleSystem;
 
 	void addWindmill(Windmill* windmill);
 	void addBubble(Bubble* bubble);

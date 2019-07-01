@@ -7,8 +7,6 @@ Fountain::Fountain() : velocity(1), time(0), direction(0), isEmitting(false), fo
 Fountain::~Fountain(){
 	if (fountainBody)
 		m_world->DestroyBody(fountainBody);
-	if (m_particleSystem)
-		m_world->DestroyParticleSystem(m_particleSystem);
 }
 
 void Fountain::emitWater() {

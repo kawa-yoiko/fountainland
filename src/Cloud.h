@@ -22,6 +22,7 @@ public:
 protected:
     Vector2 size;
     b2ParticleSystem *_particleSys;
+	b2ParticleGroup* _cloudGroup;
 private:
     void putIntoWorld();
 };

@@ -7,8 +7,6 @@ Player::Player(float x,float y):GameObject(),playerGroup(nullptr){
 }
 
 Player::~Player(){
-	if(m_particleSystem)
-		m_world->DestroyParticleSystem(m_particleSystem);
 }
 
 int Player::getParticleCount() const{

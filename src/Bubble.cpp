@@ -25,6 +25,4 @@ void Bubble::trigger() {
 }
 
 Bubble::~Bubble(){
-	if (m_particleSystem)
-		m_world->DestroyParticleSystem(m_particleSystem);
 }

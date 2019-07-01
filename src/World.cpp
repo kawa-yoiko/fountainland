@@ -4,6 +4,11 @@ World::World(){
 	b2Vec2 gravity;
 	gravity.Set(0.0f, 10.0f);
 	m_world = new b2World(gravity);
+	b2ParticleSystemDef particleSystemDef;
+	//Alter the elastic strength here.
+	particleSystemDef.elasticStrength = 1.2f;
+	m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
+	m_particleSystem->SetRadius(0.035f);
 }
 
 World::~World(){
@@ -30,6 +35,7 @@ void World::addBubble(Bubble* bubble){
 
 void World::addFountain(Fountain* fountain){
 	fountain->m_world = this->m_world;
+	fountain->m_particleSystem = this->m_particleSystem;
 	fountain->drawFountain();
 	fountain->emitWater();
 	interactableList.push_back(fountain);
@@ -37,20 +43,14 @@ void World::addFountain(Fountain* fountain){
 
 void World::addCloud(Cloud* cloud){
 	cloud->m_world = this->m_world;
-	const b2ParticleSystemDef particleSystemDef;
-	cloud->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
-	cloud->m_particleSystem->SetRadius(3.5f);
+	cloud->m_particleSystem = this->m_particleSystem;
 	cloud->putIntoWorld();
 	interactableList.push_back(cloud);
 }
 
 void World::addPlayer(Player* player){
 	player->m_world = this->m_world;
-	b2ParticleSystemDef particleSystemDef;
-	//Alter the elastic strength here.
-	particleSystemDef.elasticStrength = 1.2f;
-	player->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
-	player->m_particleSystem->SetRadius(0.035f);
+	player->m_particleSystem = this->m_particleSystem;
 	player->addToWorld();
 	_player = player;
 }
