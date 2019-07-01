@@ -32,6 +32,8 @@ public:
 
     std::vector<Knob *> _knobs;
 
+    constexpr static const float SCALE = 10;
+
 protected:
     kc_linearscroll *_kineti;
 
@@ -47,7 +49,7 @@ protected:
     void drawPlayer(Player *player);
 
     inline Vector2 posInCam(Vector2 p) {
-        return Vector2 {p.x + _cam.x, p.y + _cam.y};
+        return Vector2 {p.x * SCALE + _cam.x, p.y * SCALE + _cam.y};
     }
 
     enum {

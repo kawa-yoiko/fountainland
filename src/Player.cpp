@@ -11,6 +11,10 @@ Player::~Player(){
 		m_world->DestroyParticleSystem(m_particleSystem);
 }
 
+int Player::getParticleCount() const{
+	return m_particleSystem->GetParticleCount();
+}
+
 b2Vec2* Player::getLinearVelocity() const{
 	return m_particleSystem->GetVelocityBuffer();
 }
