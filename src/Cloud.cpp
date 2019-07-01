@@ -11,7 +11,7 @@ Cloud::~Cloud(){
 
 void Cloud::putIntoWorld()
 {
-	const float32 length = 40.0f, width = 20.0f;
+	float32 length = size.x, width = size.y;
 	b2Vec2 pos(getPosition().x, getPosition().y);
 	double cloudAngle = getAngle();
 
@@ -25,14 +25,16 @@ void Cloud::putIntoWorld()
 	b2ParticleGroupDef pd;
 	pd.flags = b2_springParticle;
 	pd.groupFlags = b2_solidParticleGroup;
-	pd.position.Set(pos.x, pos.y);
+	pd.position.Set(0, 0);
 	pd.shape = &shape;
 //	pd.color.Set(0, 0, 255, 255);
+	particleSystem->SetRadius(0.25f);
 	particleSystem->CreateParticleGroup(pd);
 
 	//this should not affect the player
 	particleSystem->SetGravityScale(0);
 	
+	_particleSys = particleSystem;
 }
 
 //this should be done every step in the world
