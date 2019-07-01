@@ -55,7 +55,7 @@ SceneGameplay::SceneGameplay()
     _world = loadLevel("level.txt");
     if (!_world) _world = loadLevel("../level.txt");
     Player *player = new Player();
-    player->setPosition(Vector2 {700, 100});
+    player->setPosition(Vector2 {0, 0});
     _world->addPlayer(player);
 
     _cam = Vector2 {0, 0};
@@ -105,7 +105,7 @@ void SceneGameplay::update(double dt)
         kc_activate(_kineti, REFRESH_TICK, dt);
     }
 
-    //_world->tick();
+    _world->tick();
 }
 
 void SceneGameplay::draw()
@@ -211,8 +211,8 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 
 void SceneGameplay::drawPlayer(Player *player)
 {
-    return;
-    Vector2 p = player->getPosition();
+ //   return;
+    Vector2 p = player->getLinearVelocity();
     printf("%.4f %.4f\n", p.x, p.y);
     DrawCircleV(posInCam(p), 25, Color {255, 192, 180, 255});
 }

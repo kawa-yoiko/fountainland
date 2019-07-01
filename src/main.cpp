@@ -26,6 +26,7 @@
 #include "Box2D/Box2D.h"
 
 #include<iostream>
+#include "World.h"
 
 int main(void)
 {
@@ -65,22 +66,21 @@ int main(void)
 
     return 0;
 
-// 	b2Vec2 gravity;
-// 	gravity.Set(0.0f, -10.0f);
-// 	b2World* world = new b2World(gravity);
-// 	b2CircleShape playerShape;
-// 	playerShape.m_p.Set(700, 100);
-// 	playerShape.m_radius = 0.2f;
-// 	b2ParticleGroupDef playerDef;
-// 	playerDef.flags = b2_elasticParticle;
-// 	playerDef.groupFlags = b2_solidParticleGroup;
-// 	playerDef.position.Set(700, 100);
-// 	playerDef.shape = &playerShape;
-// 	playerDef.color.Set(0, 255, 0, 255);
-// 	const b2ParticleSystemDef pd;
-// 	b2ParticleSystem* particleSystem = world->CreateParticleSystem(&pd);
-// 	particleSystem->SetRadius(0.035f);
-// 	auto playerGroup = particleSystem->CreateParticleGroup(playerDef);
+
+// 	World world;
+// 	Ground* ground = new Ground();
+// 	std::vector<b2Vec2> bdy;
+// 	bdy.push_back(b2Vec2(0.0f, 24.0f));
+// 	bdy.push_back(b2Vec2(0.0f, 48.0f));
+// 	bdy.push_back(b2Vec2(80.0f, 48.0f));
+// 	bdy.push_back(b2Vec2(40.0f, 30.0f));
+// 	ground->setGroundBoundary(bdy);
+// 	world.addGround(ground);
+// 	Player* player = new Player();
+// 	player->setPosition(Vector2{ 10.0f, 10.0f });
+// 	world.addPlayer(player);
+// 
+// 	
 // 	
 // 	float32 hz = 60.0f;
 // 	float32 timeStep = 1.0f / hz;
@@ -88,8 +88,8 @@ int main(void)
 // 	int32 positionIterations = 3;
 // 	int32 particleIterations = b2CalculateParticleIterations(10, 0.04f, 1 / hz);
 // 	while (true) {
-// 		playerGroup->ApplyForce(gravity);
-// 		world->Step(timeStep, velocityIterations, positionIterations, particleIterations);
-// 		std::cout << world->GetParticleSystemList()->GetPositionBuffer()[0].x << "," << world->GetParticleSystemList()->GetPositionBuffer()[0].y << std::endl;
+// 		world.m_world->Step(timeStep, velocityIterations, positionIterations, particleIterations);
+// 		std::cout << world.m_world->GetParticleSystemList()->GetPositionBuffer()[0].x << "," << world.m_world->GetParticleSystemList()->GetPositionBuffer()[0].y << std::endl;
 // 	}
+
 }

@@ -16,9 +16,9 @@ public:
 	friend class b2ParticleGroup;
 	friend class World;
 
-	Vector2 getLinearVelocity() const;
+	b2Vec2* getLinearVelocity() const;
 	void applyLinearImpluse(const b2Vec2& impluse);
-	const Vector2 getPosition() const;
+	const b2Vec2* getPosition() const;
 	void setPosition(Vector2 pos) { playerInitPos = pos; }
 	
 private:

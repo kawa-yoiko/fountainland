@@ -43,7 +43,9 @@ void World::addCloud(Cloud* cloud){
 
 void World::addPlayer(Player* player){
 	player->m_world = this->m_world;
-	const b2ParticleSystemDef particleSystemDef;
+	b2ParticleSystemDef particleSystemDef;
+	//Alter the elastic strength here.
+	//particleSystemDef.elasticStrength = 2.0f;
 	player->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
 	player->m_particleSystem->SetRadius(0.035f);
 	player->addToWorld();
