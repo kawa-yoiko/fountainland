@@ -147,7 +147,7 @@ void SceneGameplay::draw()
             break;
         case Interactable::Fountain:
             this->drawFountain((Fountain *)obj);
-            //((Fountain *)obj)->emitWater();
+            ((Fountain *)obj)->emitWater();
             break;
         case Interactable::Ground:
             this->drawGround((Ground *)obj);
@@ -190,7 +190,7 @@ void SceneGameplay::drawCloud(Cloud *cloud)
     );*/
     const b2Vec2 *p = cloud->getParticlePositions();
     int n = cloud->getParticleCount();
-    for (int i = 0; i < n; i += 5)
+    for (int i = 0; i < n; i += 15)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color {244, 255, 255, 216});
     rlglDraw();
 }

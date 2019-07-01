@@ -36,8 +36,6 @@ void World::addBubble(Bubble* bubble){
 void World::addFountain(Fountain* fountain){
 	fountain->m_world = this->m_world;
 	fountain->m_particleSystem = this->m_particleSystem;
-	fountain->drawFountain();
-	fountain->emitWater();
 	interactableList.push_back(fountain);
 }
 

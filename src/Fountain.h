@@ -12,8 +12,9 @@ public:
 	inline double getDirection() const { return direction; }
 	inline void setVelocity(int v) { velocity = v; }
 	inline int getVelocity() const { return velocity; }
-	
+	b2Vec2* getParticleLocation() const { return system->GetPositionBuffer(); }
 	void beforeTick() override;
+	b2ParticleSystem* system;
 private:
 	int velocity;
 	int time; //ms(how often does it emit water)
