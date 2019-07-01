@@ -12,8 +12,8 @@ Player::~Player(){
 }
 
 Vector2 Player::getLinearVelocity() const{
-	return Vector2{ playerGroup->GetLinearVelocity().x,
-		playerGroup->GetLinearVelocity().y };
+	return Vector2{ m_particleSystem->GetVelocityBuffer()[0].x,
+		m_particleSystem->GetVelocityBuffer()[0].y };
 }
 
 void Player::applyLinearImpluse(const b2Vec2& impluse){
@@ -21,8 +21,10 @@ void Player::applyLinearImpluse(const b2Vec2& impluse){
 }
 
 const Vector2 Player::getPosition() const{
-	return Vector2{ playerGroup->GetPosition().x,
-		playerGroup->GetPosition().y };
+	int maxima = m_particleSystem->GetPositionBuffer()->Length();
+	return Vector2{ m_particleSystem->GetPositionBuffer()[0].x,
+		(m_particleSystem->GetPositionBuffer()[0].y+
+			m_particleSystem->GetPositionBuffer()[maxima].y)/2 };
 }
 
 void Player::addToWorld(){
@@ -30,6 +32,7 @@ void Player::addToWorld(){
 	playerShape.m_radius = 0.2f;
 	playerDef.flags = b2_elasticParticle;
 	playerDef.groupFlags = b2_solidParticleGroup;
+	playerDef.position.Set(playerInitPos.x, playerInitPos.y);
 	playerDef.shape = &playerShape;
 	playerDef.color.Set(0, 255, 0, 255);
 	b2ParticleSystem* particleSystem = getParticleSystem();

@@ -2,7 +2,7 @@
 
 World::World(){
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -10.0f);
+	gravity.Set(0.0f, 10.0f);
 	m_world = new b2World(gravity);
 }
 
@@ -36,6 +36,7 @@ void World::addCloud(Cloud* cloud){
 	cloud->m_world = this->m_world;
 	const b2ParticleSystemDef particleSystemDef;
 	cloud->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
+	cloud->m_particleSystem->SetRadius(3.5f);
 	cloud->putIntoWorld();
 	interactableList.push_back(cloud);
 }
@@ -44,6 +45,7 @@ void World::addPlayer(Player* player){
 	player->m_world = this->m_world;
 	const b2ParticleSystemDef particleSystemDef;
 	player->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
+	player->m_particleSystem->SetRadius(0.035f);
 	player->addToWorld();
 	_player = player;
 }
