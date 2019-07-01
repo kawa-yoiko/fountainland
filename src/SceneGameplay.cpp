@@ -10,6 +10,7 @@ extern "C" {
 
 #include "raylib.h"
 #include "raymath.h"
+#include "rlgl.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -168,6 +169,7 @@ void SceneGameplay::drawGround(Ground *ground)
         poly.push_back(posInCam(Vector2 {p.x, p.y}));
     }
     DrawPolyFilledConcave(poly.data(), poly.size(), Color {216, 234, 192, 192});
+    rlglDraw();
 }
 
 void SceneGameplay::drawBubble(Bubble *bubble)
@@ -190,6 +192,7 @@ void SceneGameplay::drawCloud(Cloud *cloud)
     int n = cloud->getParticleCount();
     for (int i = 0; i < n; i += 5)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color {244, 255, 255, 216});
+    rlglDraw();
 }
 
 void SceneGameplay::drawFountain(Fountain *fountain)
@@ -203,6 +206,7 @@ void SceneGameplay::drawFountain(Fountain *fountain)
         6,
         Color {128, 192, 255, 255}
     );
+    rlglDraw();
 }
 
 void SceneGameplay::drawWindmill(Windmill *windmill)
@@ -227,6 +231,7 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
         (windmill->getAngle() + PI / 2) / PI * 180,
         Color {216, 216, 160, 255}
     );
+    rlglDraw();
 }
 
 void SceneGameplay::drawPlayer(Player *player)
