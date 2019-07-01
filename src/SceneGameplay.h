@@ -16,6 +16,8 @@ extern "C" {
 
 #include <vector>
 
+class Knob;
+
 class SceneGameplay : public Scene {
 public:
     SceneGameplay();
@@ -27,6 +29,8 @@ public:
     bool isScrollRefreshingX;
 
     Vector2 _cam;   // XXX
+
+    std::vector<Knob *> _knobs;
 
 protected:
     kc_linearscroll *_kineti;
@@ -45,6 +49,12 @@ protected:
     inline Vector2 posInCam(Vector2 p) {
         return Vector2 {p.x + _cam.x, p.y + _cam.y};
     }
+
+    enum {
+        PREPARING,
+        RUNNING,
+        RESTARTING
+    } _state;
 };
 
 #endif

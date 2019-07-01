@@ -17,7 +17,12 @@ extern "C" {
 static void updatePos(void *__this, float p)
 {
     SceneGameplay *_this = (SceneGameplay *)__this;
+    float lastX = _this->_cam.x;
     _this->_cam.x = p;
+    for (Knob *k : _this->_knobs) {
+        Vector2 pos = k->getPosition();
+        k->setPosition(Vector2 {pos.x + (p - lastX), pos.y});
+    }
 }
 
 static void startRefreshing(void *__this)
@@ -46,7 +51,9 @@ SceneGameplay::SceneGameplay()
     _isMouseDown = false;
     isScrollRefreshingX = false;
 
-    _world = loadLevel("../level.txt");
+    // XXX...
+    _world = loadLevel("level.txt");
+    if (!_world) _world = loadLevel("../level.txt");
     Player *player = new Player();
     player->setPosition(Vector2 {700, 100});
     _world->addPlayer(player);
@@ -62,9 +69,15 @@ SceneGameplay::SceneGameplay()
     button->setPosition(Vector2 {SCR_W - 6, 6});
     this->addWidget(button);
 
+    for (Interactable *obj : _world->interactableList) {
+        if (!obj->isTrigger) {  // XXX: Add isKnobSetup?
+        }
+    }
+
     Knob *knob = new Knob([] (double val) { printf("%.4f\n", val); });
     knob->setPosition(Vector2 {SCR_W / 2, SCR_H / 2});
     this->addWidget(knob);
+    _knobs.push_back(knob);
 }
 
 SceneGameplay::~SceneGameplay()
