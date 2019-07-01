@@ -72,6 +72,7 @@ void draw()
             s->widgetsMouseRelease(GetMouseX() * 2, GetMouseY() * 2);
         }
         s->update(dt);
+        if (!sceneStack.empty()) s = sceneStack.back();
         s->draw();
         s->widgetsDraw();
     }
