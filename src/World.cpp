@@ -8,9 +8,12 @@ World::World(){
 
 World::~World(){
 	for (auto&& it : interactableList)
-		delete(it);
-	delete _player;
-	delete m_world;
+		if(it)
+			delete(it);
+	if(_player)
+		delete _player;
+	if(m_world)
+		delete m_world;
 }
 
 void World::addWindmill(Windmill* windmill){

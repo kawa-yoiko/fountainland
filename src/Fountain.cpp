@@ -7,6 +7,8 @@ Fountain::Fountain() : velocity(1), time(0), direction(0), isEmitting(false), fo
 Fountain::~Fountain(){
 	if (fountainBody)
 		m_world->DestroyBody(fountainBody);
+	if (m_particleSystem)
+		m_world->DestroyParticleSystem(m_particleSystem);
 }
 
 void Fountain::emitWater() {
@@ -44,8 +46,6 @@ void Fountain::drawFountain() {
 	fountainBody->CreateFixture(&shape, 5.0f);
 	shape.SetAsBox(1.0f, 0.2f, bd.position + b2Vec2{ 0.2f * (float)sin(angle), - 0.2f * (float)cos(angle) }, angle);
 	fountainBody->CreateFixture(&shape, 5.0f);
-	
-	return;
 }
 
 void Fountain::beforeTick() {

@@ -11,7 +11,7 @@ Cloud::~Cloud(){
 
 void Cloud::putIntoWorld()
 {
-	const int length = 40.0f, width = 20.0f;
+	const float32 length = 40.0f, width = 20.0f;
 	b2Vec2 pos(getPosition().x, getPosition().y);
 	double cloudAngle = getAngle();
 

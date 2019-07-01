@@ -15,6 +15,5 @@ public:
 protected:
     Vector2 size;
 private:
-	// XXX: Should this be a base class interface?
     void putIntoWorld();
 };
