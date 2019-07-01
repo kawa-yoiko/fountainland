@@ -17,10 +17,10 @@ public:
 	friend class World;
 
 	int getParticleCount() const;
-	inline b2Vec2* getLinearVelocity() const;
+	b2Vec2* getLinearVelocity() const;
 	void applyLinearImpluse(const b2Vec2& impluse);
-	inline const b2Vec2* getPosition() const;
-	inline void setPosition(Vector2 pos) { playerInitPos = pos; }
+	const b2Vec2* getPosition() const;
+	void setPosition(Vector2 pos) { playerInitPos = pos; }
 	
 private:
 	void addToWorld();

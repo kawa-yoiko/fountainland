@@ -15,7 +15,7 @@ public:
 private:
 	void addToWorld();
     float fanSize;
-	double windSpeed;
+//	double windSpeed;
 	b2Body* polygon_body;
 	b2Body* ground;
 };
