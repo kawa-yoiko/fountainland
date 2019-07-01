@@ -17,11 +17,15 @@ World *loadLevel(const char *path)
     while (fscanf(f, "%15s", name) == 1) {
         if (strcmp(name, "ground") == 0) {
             int x, y;
+            int x0, y0;
+            bool first = true;
             std::vector<b2Vec2> p;
             Ground *ground = new Ground();
             while (fscanf(f, "%d%d", &x, &y) == 2) {
                 p.push_back(b2Vec2(x, y));
+                if (first) { x0 = x; y0 = y; first = false; }
             }
+            p.push_back(b2Vec2(x0, y0));
             ground->setGroundBoundary(p);
             world->addGround(ground);
         } else if (strcmp(name, "bubble") == 0) {

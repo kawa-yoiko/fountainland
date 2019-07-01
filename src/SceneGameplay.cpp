@@ -212,7 +212,7 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 void SceneGameplay::drawPlayer(Player *player)
 {
  //   return;
-    b2Vec2 *p = player->getLinearVelocity();
+    const b2Vec2 *p = player->getPosition();
     int n = player->getParticleCount();
     for (int i = 0; i < n; i++)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color{ 255, 192, 180, 255 });
