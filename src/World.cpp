@@ -8,7 +8,7 @@ World::World(){
 	//Alter the elastic strength here.
 	particleSystemDef.elasticStrength = 1.2f;
 	m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
-	m_particleSystem->SetRadius(0.035f);
+	m_particleSystem->SetRadius(0.25f);
 }
 
 World::~World(){

@@ -33,6 +33,6 @@ void Cloud::putIntoWorld()
 
 //this should be done every step in the world
 void Cloud::beforeTick() {
-	b2Vec2 gravity(0.0f, 10.0f);
+	b2Vec2 gravity(0.0f, -30.0f);
 	_cloudGroup->ApplyForce(_cloudGroup->GetMass() * gravity);
 }
