@@ -1,6 +1,7 @@
 #include "SceneGameplay.h"
 #include "Global.h"
 #include "LevelLoader.h"
+#include "WidgetButton.h"
 
 extern "C" {
 #include "shapes_ext.h"
@@ -50,6 +51,15 @@ SceneGameplay::SceneGameplay()
     _world->addPlayer(*player);
 
     _cam = Vector2 {0, 0};
+
+    Button *button = new Button(
+        LoadTexture("Sprite-0001.png"),
+        LoadTexture("Sprite-0002.png"),
+        Vector2 {1, 0},
+        [] () { puts("Hi"); }
+    );
+    button->setPosition(Vector2 {SCR_W - 6, 6});
+    this->addWidget(button);
 }
 
 SceneGameplay::~SceneGameplay()
@@ -65,19 +75,19 @@ void SceneGameplay::update(double dt)
         return;
     }
 
-    if (IsMouseButtonPressed(0)) {
+    if (::isMouseButtonPressed) {
         kc_activate(_kineti, TOUCH_BEGAN, GetMouseX() * 2);
-    } else if (IsMouseButtonDown(0)) {
+    } else if (::isMouseButtonDown) {
         kc_activate(_kineti, TOUCH_MOVED, GetMouseX() * 2);
     }
-    if (IsMouseButtonReleased(0)) {
+    if (::isMouseButtonReleased) {
         kc_activate(_kineti, TOUCH_ENDED, GetMouseX() * 2);
     }
     if (isScrollRefreshingX) {
         kc_activate(_kineti, REFRESH_TICK, dt);
     }
 
-    _world->tick();
+    //_world->tick();
 }
 
 void SceneGameplay::draw()
@@ -183,6 +193,7 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 
 void SceneGameplay::drawPlayer(Player *player)
 {
+    return;
     Vector2 p = player->getPosition();
     printf("%.4f %.4f\n", p.x, p.y);
     DrawCircleV(posInCam(p), 25, Color {255, 192, 180, 255});

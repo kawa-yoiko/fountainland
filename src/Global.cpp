@@ -46,13 +46,34 @@ Vector2 drawTextAnchored(
     return textSize;
 }
 
+bool isMouseButtonPressed = false;
+bool isMouseButtonDown = false;
+bool isMouseButtonReleased = false;
+
 void draw()
 {
     double dt = (lastTime == -1 ? 0 : GetTime() - lastTime);
     lastTime = GetTime();
+    isMouseButtonPressed = false;
+    isMouseButtonReleased = false;
     if (!sceneStack.empty()) {
-        sceneStack.back()->update(dt);
-        sceneStack.back()->draw();
-        sceneStack.back()->widgetsDraw();
+        Scene *s = sceneStack.back();
+        if (IsMouseButtonPressed(0)) {
+            if (!s->widgetsMouseHold(GetMouseX() * 2, GetMouseY() * 2)) {
+                isMouseButtonPressed = true;
+                isMouseButtonDown = true;
+            }
+        } else if (IsMouseButtonDown(0)) {
+            s->widgetsMouseMove(GetMouseX() * 2, GetMouseY() * 2);
+        }
+        if (IsMouseButtonReleased(0)) {
+            isMouseButtonReleased = isMouseButtonDown;
+            isMouseButtonDown = false;
+            s->widgetsMouseRelease(GetMouseX() * 2, GetMouseY() * 2);
+        }
+        s->update(dt);
+        s->draw();
+        s->widgetsDraw();
     }
+    //printf("%d %d %d\n", (int)isMouseButtonPressed, (int)isMouseButtonDown, (int)isMouseButtonReleased);
 }
