@@ -21,7 +21,7 @@ void Fountain::emitWater() {
 	b2ParticleDef pd;
 	pd.flags = b2_elasticParticle;
 	pd.group = group;
-	pd.lifetime = 1;
+	pd.lifetime = 5;
 	// Keep emitting particles on this frame until we only have a
 	// fractional particle left.
 	while (emitRemainder > 1) {

@@ -193,10 +193,12 @@ void SceneGameplay::drawCloud(Cloud *cloud)
     for (int i = 0; i < n; i += 15)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color {244, 255, 255, 216});
     rlglDraw();
+	
 }
 
 void SceneGameplay::drawFountain(Fountain *fountain)
 {
+	
     Vector2 p = posInCam(fountain->getPosition());
     int v = fountain->getVelocity();
     double a = fountain->getDirection();
@@ -238,6 +240,6 @@ void SceneGameplay::drawPlayer(Player *player)
 {
     const b2Vec2 *p = player->getPosition();
     int n = player->getParticleCount();
-    for (int i = 0; i < n; i += 5)
+    for (int i = 0; i < n; i += 1)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color{ 255, 192, 180, 255 });
 }
