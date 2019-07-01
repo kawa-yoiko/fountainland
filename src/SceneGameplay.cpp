@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "LevelLoader.h"
 #include "WidgetButton.h"
+#include "WidgetKnob.h"
 
 extern "C" {
 #include "shapes_ext.h"
@@ -60,6 +61,10 @@ SceneGameplay::SceneGameplay()
     );
     button->setPosition(Vector2 {SCR_W - 6, 6});
     this->addWidget(button);
+
+    Knob *knob = new Knob([] (double val) { printf("%.4f\n", val); });
+    knob->setPosition(Vector2 {SCR_W / 2, SCR_H / 2});
+    this->addWidget(knob);
 }
 
 SceneGameplay::~SceneGameplay()
