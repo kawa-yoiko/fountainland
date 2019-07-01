@@ -55,7 +55,7 @@ SceneGameplay::SceneGameplay()
     _world = loadLevel("level.txt");
     if (!_world) _world = loadLevel("../level.txt");
     Player *player = new Player();
-    player->setPosition(Vector2 {0, 0});
+    player->setPosition(Vector2 {10, 0});
     _world->addPlayer(player);
 
     _cam = Vector2 {0, 0};
@@ -105,7 +105,7 @@ void SceneGameplay::update(double dt)
         kc_activate(_kineti, REFRESH_TICK, dt);
     }
 
-    _world->tick();
+    for (int i = 0; i < 2; i++) _world->tick();
 }
 
 void SceneGameplay::draw()
@@ -131,6 +131,7 @@ void SceneGameplay::draw()
             break;
         case Interactable::Fountain:
             this->drawFountain((Fountain *)obj);
+            ((Fountain *)obj)->emitWater();
             break;
         case Interactable::Ground:
             this->drawGround((Ground *)obj);
@@ -179,7 +180,7 @@ void SceneGameplay::drawFountain(Fountain *fountain)
     double a = fountain->getDirection();
     DrawLineEx(
         p,
-        Vector2 {p.x + v * 15 * cosf(a), p.y + v * 15 * sinf(a)},
+        Vector2 {p.x + v * 50 * cosf(a), p.y + v * 50 * sinf(a)},
         6,
         Color {128, 192, 255, 255}
     );
@@ -211,9 +212,8 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 
 void SceneGameplay::drawPlayer(Player *player)
 {
- //   return;
     const b2Vec2 *p = player->getPosition();
     int n = player->getParticleCount();
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i += 5)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color{ 255, 192, 180, 255 });
 }

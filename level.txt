@@ -1,7 +1,5 @@
 ground 0 24 0 48 80 48 40 30
-bubble 960 288 20 10
-cloud 1200 96 90 45 0
-cloud 1200 96 120 60 0
-cloud 1200 96 120 60 -0.5236
-fountain 618 400 10 -1.0472
-windmill 1400 336 100 1
+bubble 96 28 2 1
+cloud 12 96 9 5 0
+fountain 63 40 10 -1.0472
+windmill 140 33 10 1

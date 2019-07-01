@@ -45,7 +45,7 @@ void World::addPlayer(Player* player){
 	player->m_world = this->m_world;
 	b2ParticleSystemDef particleSystemDef;
 	//Alter the elastic strength here.
-	//particleSystemDef.elasticStrength = 2.0f;
+	particleSystemDef.elasticStrength = 1.2f;
 	player->m_particleSystem = m_world->CreateParticleSystem(&particleSystemDef);
 	player->m_particleSystem->SetRadius(0.035f);
 	player->addToWorld();
