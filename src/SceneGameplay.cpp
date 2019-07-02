@@ -114,6 +114,8 @@ void SceneGameplay::update(double dt)
     if (IsKeyPressed(KEY_TAB)) {
         popScene();
         return;
+    } else if (IsKeyPressed(KEY_ENTER) && _state == PREPARING) {
+        _state = RUNNING;
     }
 
     if (::isMouseButtonPressed) {
@@ -182,31 +184,14 @@ void SceneGameplay::drawGround(Ground *ground)
 
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
-    //Color c = Color {200, 216, 255, 216};
-    //DrawCircleV(posInCam(bubble->bubblePos), bubble->bubbleSize, c);
 }
 
 void SceneGameplay::drawCloud(Cloud *cloud)
 {
-    /*Vector2 p = posInCam(cloud->getPosition());
-    Vector2 s = cloud->getSize();
-    DrawRectanglePro(
-        Rectangle {p.x, p.y, s.x * SCALE, s.y * SCALE},
-        Vector2 {s.x / 2 * SCALE, s.y / 2 * SCALE},
-        cloud->getAngle() / PI * 180,
-        Color {244, 255, 255, 216}
-    );*/
-    const b2Vec2 *p = cloud->getParticlePositions();
-    int n = cloud->getParticleCount();
-    for (int i = 0; i < n; i += 15)
-        DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color {244, 255, 255, 216});
-    rlglDraw();
-	
 }
 
 void SceneGameplay::drawFountain(Fountain *fountain)
 {
-	
     Vector2 p = posInCam(fountain->getPosition());
     int v = fountain->getVelocity();
     double a = fountain->getDirection();
@@ -250,4 +235,5 @@ void SceneGameplay::drawPlayer(Player *player)
     int n = player->getParticleCount();
     for (int i = 0; i < n; i += 1)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color{ 255, 192, 180, 255 });
+    rlglDraw();
 }
