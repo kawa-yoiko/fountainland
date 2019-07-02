@@ -58,12 +58,13 @@ World *loadLevel(const char *path)
             world->addFountain(fountain);
         } else if (strcmp(name, "windmill") == 0) {
             int x, y, fansz;
-            float a;
-            fscanf(f, "%d%d%d%f", &x, &y, &fansz, &a);
+            float a, w;
+            fscanf(f, "%d%d%d%f%f", &x, &y, &fansz, &a, &w);
             Windmill *windmill = new Windmill();
             windmill->setPosition(Vector2 {(float)x, (float)y});
             windmill->setFanSize(fansz);
             windmill->setAngle(a);
+			windmill->setVelocity(w);
             world->addWindmill(windmill);
 		}else if (strcmp(name, "win") == 0) {
 			int x1, y1, x2, y2;
