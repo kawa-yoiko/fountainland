@@ -11,6 +11,8 @@ public:
     void setSize(Vector2 s) { size = s; }
     inline Vector2 getSize() const { return size; }
 
+    void setAngle(double a) override;
+
     inline int getParticleCount() const {
         return _particleSys->GetParticleCount();
     }

@@ -30,7 +30,7 @@ void Windmill::addToWorld(){
 
 	polygon_body->CreateFixture(&polygon_shape[0], 2.0f);
 	polygon_body->CreateFixture(&polygon_shape[1], 2.0f);
-	float32 w = 10.0f;
+	float32 w = 0.0f;
 	polygon_body->SetAngularVelocity(w);
 	polygon_body->SetLinearVelocity(b2Vec2(-8.0f * w, 0.0f));
 	b2RevoluteJointDef rjd;

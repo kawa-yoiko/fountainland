@@ -109,13 +109,6 @@ void b2ParticleGroup::ApplyLinearImpulse(const b2Vec2& impulse)
 	m_system->ApplyLinearImpulse(m_firstIndex, m_lastIndex, impulse);
 }
 
-void b2ParticleGroup::ZeroVelocity()
-{
-	b2Vec2 *ps = m_system->GetVelocityBuffer();
-	for (int32 i = m_firstIndex; i < m_lastIndex; i++)
-		ps[i] = b2Vec2_zero;
-}
-
 void b2ParticleGroup::DestroyParticles(bool callDestructionListener)
 {
 	b2Assert(m_system->m_world->IsLocked() == false);

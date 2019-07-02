@@ -246,8 +246,6 @@ public:
 	/// group.
 	void ApplyLinearImpulse(const b2Vec2& impulse);
 
-	void ZeroVelocity();
-
 	/// Destroy all the particles in this group.
 	/// This function is locked during callbacks.
 	/// @param Whether to call the world b2DestructionListener for each

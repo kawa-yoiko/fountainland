@@ -60,12 +60,19 @@ SceneGameplay::SceneGameplay()
     _world->addPlayer(player);
 
     _cam = Vector2 {0, 0};
+    _state = PREPARING;
 
     Button *button = new Button(
         LoadTexture("Sprite-0001.png"),
         LoadTexture("Sprite-0002.png"),
         Vector2 {1, 0},
-        [] () { puts("Hi"); }
+        [this] () {
+            if (_state == PREPARING) {
+                _state = RUNNING;
+            } else if (_state == RUNNING) {
+                _state = RESTARTING;
+            }
+        }
     );
     button->setPosition(Vector2 {SCR_W - 6, 6});
     this->addWidget(button);
@@ -121,7 +128,8 @@ void SceneGameplay::update(double dt)
         kc_activate(_kineti, REFRESH_TICK, dt);
     }
 
-    for (int i = 0; i < 2; i++) _world->tick();
+    if (_state >= RUNNING)
+        for (int i = 0; i < 2; i++) _world->tick();
 }
 
 void SceneGameplay::draw()

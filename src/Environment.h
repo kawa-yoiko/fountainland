@@ -6,7 +6,7 @@ public:
 	virtual ~Environment() {}
 
 	//Controllable by the player
-	void setAngle(double theta) { angle = theta; }
+	virtual void setAngle(double theta) { angle = theta; }
 
 	//Called only once at the start of each level.
 	void setPosition(Vector2 pos) { position = pos; }
