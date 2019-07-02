@@ -11,8 +11,8 @@ public:
 	//Called only once at the start of each level.
 	void setPosition(Vector2 pos) { position = pos; }
 
-	double getAngle() const { return angle; }
-	Vector2 getPosition() const { return position; }
+	virtual double getAngle() const { return angle; }
+	virtual Vector2 getPosition() const { return position; }
 
 	Environment();
 

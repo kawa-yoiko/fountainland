@@ -9,6 +9,7 @@ public:
 	
 	inline void setFanSize(float s) { fanSize = s; }
     inline float getFanSize() const { return fanSize; }
+	double getAngle() const override;
 
 	friend class World;
 
