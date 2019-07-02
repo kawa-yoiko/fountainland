@@ -48,8 +48,8 @@ void Cloud::setAngle(double a)
         b2Vec2 p0(getPosition().x, getPosition().y);
         double cos_a = cos(a), sin_a = sin(a);
         for (int i = k; i < k + n; i++) {
-            p[i].x = p0.x + u[i]->x * cos_a + u[i]->y * sin_a;
-            p[i].y = p0.y - u[i]->x * sin_a + u[i]->y * cos_a;
+            p[i].x = p0.x + u[i]->x * cos_a - u[i]->y * sin_a;
+            p[i].y = p0.y + u[i]->x * sin_a + u[i]->y * cos_a;
         }
     }
 }
