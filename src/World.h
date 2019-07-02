@@ -23,7 +23,9 @@ public:
 	void addCloud(Cloud* cloud);
 	void addPlayer(Player* player);
 	void addGround(Ground* ground);
+	void addFinishLine(b2Vec2 finishStart, b2Vec2 finishEnd);
 	void tick();
+	bool checkWin();
 	
 	//Here stores all the interactable objects(fountains, bubbles, windmills, clouds)
 	std::vector<Interactable*> interactableList;
@@ -36,4 +38,5 @@ protected:
     Player *_player;
 
     int _width;
+	b2Vec2 *finishLine;
 };

@@ -10,10 +10,13 @@ public:
 	inline void setFanSize(float s) { fanSize = s; }
     inline float getFanSize() const { return fanSize; }
 	double getAngle() const override;
+	void setAngle(double theta) override;
+	void setVelocity(float32 v) { angularVelocity = v; }
 
 	friend class World;
 
 private:
+	float32 angularVelocity;
 	void addToWorld();
     float fanSize;
 //	double windSpeed;
