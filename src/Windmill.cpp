@@ -1,6 +1,6 @@
 #include "Windmill.h"
 
-Windmill::Windmill() :fanSize(0.0f), polygon_body(nullptr), ground(nullptr), angularVelocity(5.0f){
+Windmill::Windmill() :fanSize(0.0f), polygon_body(nullptr), ground(nullptr), angularVelocity(3.0f){
 	type = Type::Windmill;
 }
 
