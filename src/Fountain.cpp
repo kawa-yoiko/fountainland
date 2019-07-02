@@ -1,19 +1,10 @@
 #include "Fountain.h"
 
-Fountain::Fountain() : velocity(1), time(500), direction(0), isEmitting(false), fountainBody(nullptr),
-emitTime(250), notEmitTime(250), record(0) {
-	double proportion = getAngle() / (2.0f * b2_pi);
+Fountain::Fountain(std::vector<bool> cycle)
+: velocity(1), direction(0), isEmitting(false), fountainBody(nullptr),
+  _cycle(cycle), _ptr(0)
+{
 	type = Type::Fountain;
-	emitTime = proportion * time / 2;
-	for (int i = 0; i < emitTime; ++i) {
-		cycle.push_back(1);
-	}
-	for (int i = 0; i < notEmitTime; ++i) {
-		cycle.push_back(0);
-	}
-	for (int i = 0; i < 250 - emitTime; ++i) {
-		cycle.push_back(1);
-	}
 }
 
 Fountain::~Fountain(){
@@ -71,7 +62,13 @@ void Fountain::drawFountain() {
 }
 
 void Fountain::beforeTick() {
-	isEmitting = cycle[record];
-	if (isEmitting) emitWater();
-	changeRecord();
+    if (_cycle[_ptr]) emitWater();
+    _ptr = (_ptr + 1) % _cycle.size();
+}
+
+void Fountain::setAngle(double a)
+{
+    Environment::setAngle(a);
+    _ptr = (int)(fmod(fmod(a, PI * 2) + PI * 2, PI * 2) / (PI * 2) * _cycle.size());
+    printf("%d %d\n", _ptr, (int)_cycle.size());
 }

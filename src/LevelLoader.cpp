@@ -51,7 +51,13 @@ World *loadLevel(const char *path)
             int x, y, vel;
             float a;
             fscanf(f, "%d%d%d%f", &x, &y, &vel, &a);
-            Fountain *fountain = new Fountain();
+            std::vector<bool> cycle;
+            int u, v;
+            while (fscanf(f, "%d%d", &u, &v) == 2) {
+                for (int i = 0; i < u; i++) cycle.push_back(false);
+                for (int i = 0; i < v; i++) cycle.push_back(true);
+            }
+            Fountain *fountain = new Fountain(cycle);
             fountain->setPosition(Vector2 {(float)x, (float)y});
             fountain->setVelocity(vel);
             fountain->setDirection(a);
