@@ -11,8 +11,8 @@ Fountain::~Fountain(){
 
 void Fountain::emitWater() {
 	const float32 size = 5.0f;
-	const int emitRate = 3;
-        time = 1;
+	const int emitRate = 6;
+	time = 1;
 
 	const b2ParticleGroupDef def;
 	b2ParticleGroup* group = m_particleSystem->CreateParticleGroup(def);
@@ -22,26 +22,23 @@ void Fountain::emitWater() {
 	b2ParticleDef pd;
 	pd.flags = b2_elasticParticle;
 	pd.group = group;
-	pd.lifetime = 5;
+	pd.lifetime = 4 - std::min(velocity, 15) / 5;
 	// Keep emitting particles on this frame until we only have a
 	// fractional particle left.
 	while (emitRemainder > 1) {
 		emitRemainder -= 1;
-
-		// Randomly pick a position within the emitter's radius.
-//		const float32 angle = (float32) rand() / (float32) RAND_MAX * 2.0f * b2_pi;
-		// Distance from the center of the circle.
 		int ran = std::rand() % 11;//generate a random number from 0 to 10
-//		double emit_angle = (float)ran / 40.0f + direction - 0.125f;//angle - 0.125f ~ angle + 0.125f
+		float32 emitAngle = (float)ran / 40.0f + direction - 0.125f;//angle - 0.125f ~ angle + 0.125f
+//		float32 emitAngle = direction;
 		const float32 distance = (float32)rand() / (float32)RAND_MAX;
-		b2Vec2 positionOnUnitCircle(cos(direction), sin(direction));
+		b2Vec2 positionOnUnitCircle(cos(emitAngle), sin(emitAngle));
 
 		// Initial position.
 		pd.position.Set(
 			position.x + positionOnUnitCircle.x * distance * size,
 			position.y + positionOnUnitCircle.y * distance * size);
 		// Send it flying
-		pd.velocity = b2Vec2{ velocity * cosf(direction), velocity * sinf(direction) };
+		pd.velocity = b2Vec2{ velocity * cosf(emitAngle), velocity * sinf(emitAngle) };
 		int index = m_particleSystem->CreateParticle(pd);
 	}
 }

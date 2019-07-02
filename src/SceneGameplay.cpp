@@ -111,10 +111,10 @@ SceneGameplay::~SceneGameplay()
 
 void SceneGameplay::update(double dt)
 {
-    if (IsKeyPressed(KEY_TAB)) {
+    if (IsKeyReleased(KEY_TAB)) {
         popScene();
         return;
-    } else if (IsKeyPressed(KEY_ENTER) && _state == PREPARING) {
+    } else if (IsKeyReleased(KEY_ENTER) && (_state == PREPARING)) {
         _state = RUNNING;
     }
 
