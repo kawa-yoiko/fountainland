@@ -1,7 +1,7 @@
 #include "Bubble.h"
 
 Bubble::Bubble(Vector2 pos, float32 size, float32 impact) : bubblePos(pos), 
-bubbleSize(size), bubbleImpact(impact), bubbleBody(nullptr) {
+bubbleSize(size), bubbleImpact(impact), bubbleBody(nullptr), flag(1) {
 	type = Type::Bubble;
 }
 
@@ -25,4 +25,8 @@ void Bubble::trigger() {
 }
 
 Bubble::~Bubble(){
+}
+
+void Bubble::beforeTick() {
+//	if(mousedown) trigger();
 }

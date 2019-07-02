@@ -95,7 +95,7 @@ SceneGameplay::SceneGameplay()
                     ((Trigger *)obj)->trigger();
                 }
             );
-            Vector2 p = ((Bubble *)obj)->bubblePos;
+            Vector2 p = ((Bubble *)obj)->getBubblePosition();
             button->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
             this->addWidget(button);
             _stageWidgets.push_back(button);
@@ -183,6 +183,16 @@ void SceneGameplay::drawGround(Ground *ground)
 
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
+//	if (!bubble->getFlag()) return;
+	Vector2 p = posInCam(bubble->getBubblePosition());
+	float32 r = bubble->getBubbleSize();
+	float32 imp = bubble->getBubbleImpact();
+	DrawCircleV(
+		p,
+		r,
+		Color{ 128, 192, 255, 255 }
+	);
+	rlglDraw();
 }
 
 void SceneGameplay::drawCloud(Cloud *cloud)
