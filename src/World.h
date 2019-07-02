@@ -34,5 +34,5 @@ public:
 
 protected:
     Player *_player;
-	b2Vec2 finishLine[2];
+	b2Vec2 *finishLine;
 };
