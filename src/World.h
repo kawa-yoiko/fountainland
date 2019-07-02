@@ -29,7 +29,11 @@ public:
 	std::vector<Interactable*> interactableList;
 
     inline Player *getPlayer() const { return _player; }
+    inline int getWidth() const { return _width; }
+    inline void setWidth(int w) { _width = w < 80 ? 80 : w; }
 
 protected:
     Player *_player;
+
+    int _width;
 };

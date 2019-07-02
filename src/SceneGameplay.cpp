@@ -46,7 +46,6 @@ SceneGameplay::SceneGameplay()
     kc_setcallback_0(_kineti, STOP_REFRESHING, stopRefreshing);
     kc_setcallback_1(_kineti, UPDATE_POSITION, updatePos);
     kc_setvisiblesize(_kineti, SCR_W);
-    kc_setcontentsize(_kineti, SCR_W * 2);
     kc_setmypos(_kineti, 0);
 
     _isMouseDown = false;
@@ -58,6 +57,8 @@ SceneGameplay::SceneGameplay()
     Player *player = new Player();
     player->setPosition(Vector2 {14, 0});
     _world->addPlayer(player);
+
+    kc_setcontentsize(_kineti, _world->getWidth() * SCALE);
 
     _cam = Vector2 {0, 0};
     _state = PREPARING;

@@ -1,6 +1,6 @@
 #include "World.h"
 
-World::World(){
+World::World() : _width(80) {
 	b2Vec2 gravity;
 	gravity.Set(0.0f, 10.0f);
 	m_world = new b2World(gravity);
