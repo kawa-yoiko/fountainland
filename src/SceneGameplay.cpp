@@ -132,12 +132,12 @@ void SceneGameplay::update(double dt)
     }
 
     if (::isMouseButtonPressed) {
-        kc_activate(_kineti, TOUCH_BEGAN, GetMouseX() * 2);
+        kc_activate(_kineti, TOUCH_BEGAN, getMouseX());
     } else if (::isMouseButtonDown) {
-        kc_activate(_kineti, TOUCH_MOVED, GetMouseX() * 2);
+        kc_activate(_kineti, TOUCH_MOVED, getMouseX());
     }
     if (::isMouseButtonReleased) {
-        kc_activate(_kineti, TOUCH_ENDED, GetMouseX() * 2);
+        kc_activate(_kineti, TOUCH_ENDED, getMouseX());
     }
     if (isScrollRefreshingX) {
         kc_activate(_kineti, REFRESH_TICK, dt);

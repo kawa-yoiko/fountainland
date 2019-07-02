@@ -1,3 +1,4 @@
+#include "Global.h"
 #include "SceneBase.h"
 
 #include "raylib.h"
@@ -66,17 +67,17 @@ void draw()
     if (!sceneStack.empty()) {
         Scene *s = sceneStack.back();
         if (IsMouseButtonPressed(0)) {
-            if (!s->widgetsMouseHold(GetMouseX() * 2, GetMouseY() * 2)) {
+            if (!s->widgetsMouseHold(getMouseX(), getMouseY())) {
                 isMouseButtonPressed = true;
                 isMouseButtonDown = true;
             }
         } else if (IsMouseButtonDown(0)) {
-            s->widgetsMouseMove(GetMouseX() * 2, GetMouseY() * 2);
+            s->widgetsMouseMove(getMouseX(), getMouseY());
         }
         if (IsMouseButtonReleased(0)) {
             isMouseButtonReleased = isMouseButtonDown;
             isMouseButtonDown = false;
-            s->widgetsMouseRelease(GetMouseX() * 2, GetMouseY() * 2);
+            s->widgetsMouseRelease(getMouseX(), getMouseY());
         }
         s->update(dt);
         if (!sceneStack.empty()) s = sceneStack.back();
