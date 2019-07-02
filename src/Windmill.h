@@ -22,4 +22,5 @@ private:
 //	double windSpeed;
 	b2Body* polygon_body;
 	b2Body* ground;
+    b2Fixture* _fixture[2];
 };
