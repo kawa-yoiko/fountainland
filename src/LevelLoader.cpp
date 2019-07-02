@@ -61,12 +61,7 @@ World *loadLevel(const char *path)
             windmill->setFanSize(fansz);
             windmill->setAngle(a);
             world->addWindmill(windmill);
-		}else if (strcmp(name, "win") == 0) {
-			int x1, y1, x2, y2;
-			fscanf(f, "%d%d%d%d", &x1, &y1, &x2, &y2);
-			world->addFinishLine(b2Vec2(x1, y1), b2Vec2(x2, y2));
-		}
-		else puts("> <");
+        } else puts("> <");
     }
 
     fclose(f);
