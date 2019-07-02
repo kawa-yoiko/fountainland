@@ -59,6 +59,11 @@ void World::addGround(Ground* ground){
 	interactableList.push_back(ground);
 }
 
+void World::addFinishLine(b2Vec2 finishStart, b2Vec2 finishEnd){
+	finishLine[0] = finishStart;
+	finishLine[1] = finishEnd;
+}
+
 void World::tick(){
 	float32 hz = 60.0f;
 	float32 timeStep = 1.0f / hz;
@@ -68,4 +73,11 @@ void World::tick(){
 	for (auto&& it : interactableList)
 		it->beforeTick();
 	m_world->Step(timeStep, velocityIterations, positionIterations, particleIterations);
+}
+
+bool World::checkWin(){
+	if(_player->getPosition()[0].x>finishLine[0].x&& _player->getPosition()[0].x<finishLine[1].x
+		&& _player->getPosition()[0].y>finishLine[0].y&&_player->getPosition[0].y<finishLine[1].y)
+		return true;
+	return false;
 }
