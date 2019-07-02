@@ -8,12 +8,22 @@ public:
 	friend class World;
 
 	void trigger() override;
+	void beforeTick() override;
 	~Bubble();
-public: // TODO: Use get/set
+
+	inline Vector2 getBubblePosition() { return bubblePos; }
+	inline void setBubblePosition(Vector2 v) { bubblePos = v; }
+	inline float32 getBubbleSize() { return bubbleSize; }
+	inline void setBubbleSize(float32 r) { bubbleSize = r; }
+	inline float32 getBubbleImpact() { return bubbleImpact; }
+	inline void setBubbleImpact(float32 imp) { bubbleImpact = imp; }
+	inline bool getFlag() { return flag; }
+	inline void setFlag(bool b) { flag = b; }
+private:
 	Vector2 bubblePos;
 	float32 bubbleSize;
 	float32 bubbleImpact;//color has something to do with its impact
-private:
+	bool flag;
 	void putIntoWorld();//put bubble into the world
 	b2Body* bubbleBody;
 };
