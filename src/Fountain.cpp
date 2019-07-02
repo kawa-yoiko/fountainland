@@ -1,7 +1,7 @@
 #include "Fountain.h"
 
 Fountain::Fountain(std::vector<bool> cycle)
-: velocity(1), direction(0), isEmitting(false), fountainBody(nullptr),
+: velocity(1), direction(0), fountainBody(nullptr),
   _cycle(cycle), _ptr(0)
 {
 	type = Type::Fountain;
@@ -70,5 +70,19 @@ void Fountain::setAngle(double a)
 {
     Environment::setAngle(a);
     _ptr = (int)(fmod(fmod(a, PI * 2) + PI * 2, PI * 2) / (PI * 2) * _cycle.size());
-    printf("%d %d\n", _ptr, (int)_cycle.size());
+}
+
+std::vector<std::pair<double, double>> Fountain::getEmissionSectors()
+{
+    std::vector<std::pair<double, double>> ret;
+    int u = -1;
+    int n = _cycle.size();
+    for (int i = 0; i < n; i++) {
+        if (_cycle[i] && (i == 0 || !_cycle[i - 1])) u = i;
+        else if (!_cycle[i] && i > 0 && _cycle[i - 1])
+            ret.push_back({(double)u / n * 360, (double)i / n * 360});
+    }
+    if (_cycle.back())
+        ret.push_back({(double)u / n * 360, 360});
+    return ret;
 }

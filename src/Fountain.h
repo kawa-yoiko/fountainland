@@ -1,5 +1,6 @@
 #pragma once
 #include "Environment.h"
+#include <utility>
 #include <vector>
 
 class Fountain : public Environment {
@@ -15,6 +16,7 @@ public:
 	inline int getVelocity() const { return velocity; }
 
     void setAngle(double a) override;
+    std::vector<std::pair<double, double>> getEmissionSectors();
 
 	b2Vec2* getParticleLocation() const { return system->GetPositionBuffer(); }
 	void beforeTick() override;
@@ -22,7 +24,6 @@ public:
 private:
 	int velocity;
 	double direction;
-	bool isEmitting;
 	b2Body* fountainBody;
 
 	std::vector<bool> _cycle;

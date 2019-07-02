@@ -48,6 +48,9 @@ void Knob::draw()
 {
     if (_isActive) {
         DrawCircleV(_pos, 24, Color {255, 255, 255, 255});
+        for (const auto &p : _sectors)
+            DrawCircleSector(_pos, 24,
+                90 - p.first, 90 - p.second, 12, Color {128, 128, 255, 255});
         DrawLineV(_pos,
             Vector2 {(float)(_pos.x + 24 * cos(_value)), (float)(_pos.y + 24 * sin(_value))},
             Color {0, 0, 0, 255}

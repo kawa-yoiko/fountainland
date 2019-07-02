@@ -89,6 +89,9 @@ SceneGameplay::SceneGameplay()
             );
             Vector2 p = ((Environment *)obj)->getPosition();
             knob->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
+            if (obj->type == Interactable::Fountain) {
+                knob->setSectors(((Fountain *)obj)->getEmissionSectors());
+            }
             this->addWidget(knob);
             _stageWidgets.push_back(knob);
             _stageKnobs.push_back(knob);
