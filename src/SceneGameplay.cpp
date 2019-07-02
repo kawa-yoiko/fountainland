@@ -39,6 +39,11 @@ static void stopRefreshing(void *__this)
     _this->isScrollRefreshingX = false;
 }
 
+void SceneGameplay::setScrollPosition(float x)
+{
+    kc_setmypos(_kineti, x);
+}
+
 SceneGameplay::SceneGameplay()
 {
     _kineti = kc_init();
@@ -69,13 +74,8 @@ SceneGameplay::SceneGameplay()
         LoadTexture("Sprite-0002.png"),
         Vector2 {1, 0},
         [this] (Button *target) {
-            if (_state == PREPARING) {
-                _state = RUNNING;
-                for (Widget *w : _stageKnobs) w->setEnabled(false);
-            } else if (_state == RUNNING) {
-                _state = RESTARTING;
-                replaceScene(new SceneGameplay());
-            }
+            this->changeState();
+            return;
         }
     );
     button->setPosition(Vector2 {SCR_W - 6, 6});
@@ -115,6 +115,19 @@ SceneGameplay::SceneGameplay()
     }
 }
 
+void SceneGameplay::changeState()
+{
+    if (_state == PREPARING) {
+        _state = RUNNING;
+        for (Widget *w : _stageKnobs) w->setEnabled(false);
+    } else if (_state == RUNNING) {
+        _state = RESTARTING;
+        SceneGameplay *scene = new SceneGameplay();
+        scene->setScrollPosition(kc_getmypos(_kineti));
+        replaceScene(scene);
+    }
+}
+
 SceneGameplay::~SceneGameplay()
 {
     // XXX: Maybe add a method kc_cleanup()
@@ -127,14 +140,8 @@ void SceneGameplay::update(double dt)
         popScene();
         return;
     } else if (IsKeyPressed(KEY_ENTER)) {
-        if (_state == PREPARING) {
-            _state = RUNNING;
-            for (Widget *w : _stageKnobs) w->setEnabled(false);
-        } else if (_state == RUNNING) {
-            _state = RESTARTING;
-            replaceScene(new SceneGameplay());
-            return;
-        }
+        changeState();
+        return;
     }
 
     if (::isMouseButtonPressed) {

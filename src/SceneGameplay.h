@@ -26,6 +26,8 @@ public:
     virtual void update(double dt) override;
     virtual void draw() override;
 
+    void setScrollPosition(float x);
+
     bool isScrollRefreshingX;
 
     Vector2 _cam;   // XXX
@@ -58,6 +60,8 @@ protected:
         RUNNING,
         RESTARTING
     } _state;
+
+    void changeState();
 };
 
 #endif
