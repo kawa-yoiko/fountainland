@@ -287,6 +287,12 @@
     <ClInclude Include="..\src\Windmill.h" />
     <ClInclude Include="..\src\World.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Sprite-0001.png" />
+    <Image Include="..\Sprite-0002.png" />
+    <Image Include="..\Sprite-0003.png" />
+    <Image Include="..\Sprite-0004.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

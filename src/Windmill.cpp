@@ -1,6 +1,6 @@
 #include "Windmill.h"
 
-Windmill::Windmill() :fanSize(0.0f), polygon_body(nullptr), ground(nullptr) {
+Windmill::Windmill() :fanSize(0.0f), polygon_body(nullptr), ground(nullptr), angularVelocity(5.0f){
 	type = Type::Windmill;
 }
 
@@ -37,9 +37,8 @@ void Windmill::addToWorld() {
 	polygon_body->CreateFixture(&polygon_shape[0], 2.0f);
 	polygon_body->CreateFixture(&polygon_shape[1], 2.0f);
 
-	float32 w = 0.0f;
-	polygon_body->SetAngularVelocity(w);
-	polygon_body->SetLinearVelocity(b2Vec2(-8.0f * w, 0.0f));
+	polygon_body->SetAngularVelocity(angularVelocity);
+	polygon_body->SetLinearVelocity(b2Vec2(-8.0f * angularVelocity, 0.0f));
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground, polygon_body, b2Vec2(position.x, position.y));
 	rjd.enableLimit = false;

@@ -489,4 +489,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Sprite-0001.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\Sprite-0002.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\Sprite-0003.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\Sprite-0004.png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
