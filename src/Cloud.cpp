@@ -35,4 +35,5 @@ void Cloud::putIntoWorld()
 void Cloud::beforeTick() {
 	b2Vec2 gravity(0.0f, -30.0f);
 	_cloudGroup->ApplyForce(_cloudGroup->GetMass() * gravity);
+	_cloudGroup->ZeroVelocity();
 }
