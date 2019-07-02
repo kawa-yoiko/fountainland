@@ -3,6 +3,7 @@
 #include "LevelLoader.h"
 #include "WidgetButton.h"
 #include "WidgetKnob.h"
+#include "SceneWin.h"
 
 extern "C" {
 #include "shapes_ext.h"
@@ -120,6 +121,7 @@ void SceneGameplay::changeState()
     if (_state == PREPARING) {
         _state = RUNNING;
         for (Widget *w : _stageKnobs) w->setEnabled(false);
+        _numSteps = 0;
     } else if (_state == RUNNING) {
         _state = RESTARTING;
         SceneGameplay *scene = new SceneGameplay();
@@ -158,20 +160,15 @@ void SceneGameplay::update(double dt)
 
     if (_state >= RUNNING)
         for (int i = 0; i < 2; i++) _world->tick();
+
+    if (_world->checkWin()) {
+        replaceScene(new SceneWin((double)_numSteps / 60));
+    }
 }
 
 void SceneGameplay::draw()
 {
     ClearBackground(Color{234, 244, 255});
-
-    drawTextAnchored("Drag me (^-^*)",
-        posInCam(Vector2 {SCR_W * 0.5, SCR_H * 0.65}),
-        40, GRAY,
-        Vector2{0.5, 0.5}, 8);
-    drawTextAnchored("Press Tab to go back",
-        posInCam(Vector2 {SCR_W * 1.5, SCR_H * 0.65}),
-        40, GRAY,
-        Vector2 {0.5, 0.5}, 8);
 
     for (Interactable *obj : _world->interactableList) {
         switch (obj->type) {
@@ -195,6 +192,17 @@ void SceneGameplay::draw()
     }
 
     this->drawPlayer(_world->getPlayer());
+
+    if (_state != PREPARING) {
+        _numSteps++;
+
+        char s[32];
+        snprintf(s, sizeof s, "%.2f", (double)_numSteps / 60);
+        drawTextAnchored(s,
+            Vector2 {SCR_W - 6, 72},
+            40, Color {64, 64, 64, 255},
+            Vector2{1, 0}, 10);
+    }
 }
 
 void SceneGameplay::drawGround(Ground *ground)

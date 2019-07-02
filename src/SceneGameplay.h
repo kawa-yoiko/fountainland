@@ -60,6 +60,7 @@ protected:
         RUNNING,
         RESTARTING
     } _state;
+    int _numSteps;
 
     void changeState();
 };

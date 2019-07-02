@@ -1,5 +1,4 @@
 #include "World.h"
-#include <iostream>
 
 World::World() : _width(80) {
 	b2Vec2 gravity;
@@ -75,14 +74,11 @@ void World::tick(){
 	for (auto&& it : interactableList)
 		it->beforeTick();
 	m_world->Step(timeStep, velocityIterations, positionIterations, particleIterations);
-	checkWin();
-//	std::cout << _player->playerGroup->GetCenter().x << "," << _player->playerGroup->GetCenter().y << std::endl;
 }
 
 bool World::checkWin(){
 	if (_player->playerGroup->GetCenter().x > finishLine[0].x-0.1 && _player->playerGroup->GetCenter().x<finishLine[1].x+0.1
 		&& _player->playerGroup->GetCenter().y>finishLine[0].y-0.1 && _player->playerGroup->GetCenter().y < finishLine[1].y+0.1) {
-		std::cout << "win" << std::endl;
 		return true;
 	}
 	return false;
