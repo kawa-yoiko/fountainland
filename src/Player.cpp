@@ -27,7 +27,7 @@ const b2Vec2* Player::getPosition() const{
 
 void Player::addToWorld(){
 	playerShape.m_p.Set(playerInitPos.x, playerInitPos.y);
-	playerShape.m_radius = 1.0f;
+	playerShape.m_radius = 5.0f;
 	playerDef.flags = b2_elasticParticle;
 	playerDef.groupFlags = b2_solidParticleGroup;
 	playerDef.shape = &playerShape;

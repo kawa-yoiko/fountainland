@@ -12,6 +12,7 @@ Fountain::~Fountain(){
 void Fountain::emitWater() {
 	const float32 size = 5.0f;
 	const int emitRate = 3;
+        time = 1;
 
 	const b2ParticleGroupDef def;
 	b2ParticleGroup* group = m_particleSystem->CreateParticleGroup(def);
