@@ -16,7 +16,9 @@ public:
 	friend class b2ParticleGroup;
 	friend class World;
 
+	int getBufferIndex() const;
 	int getParticleCount() const;
+	int getSystemParticleCount() const;
 	b2Vec2* getLinearVelocity() const;
 	void applyLinearImpluse(const b2Vec2& impluse);
 	const b2Vec2* getPosition() const;

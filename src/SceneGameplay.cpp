@@ -12,9 +12,9 @@ extern "C" {
 #include "raymath.h"
 #include "rlgl.h"
 
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include <iostream>
 
 static void updatePos(void *__this, float p)
 {
@@ -257,8 +257,25 @@ void SceneGameplay::drawWindmill(Windmill *windmill)
 void SceneGameplay::drawPlayer(Player *player)
 {
     const b2Vec2 *p = player->getPosition();
-    int n = player->getParticleCount();
+    int n = player->getSystemParticleCount();
     for (int i = 0; i < n; i += 1)
         DrawCircleV(posInCam(Vector2 {p[i].x, p[i].y}), 3, Color{ 255, 192, 180, 255 });
     rlglDraw();
+
+    if (_state != PREPARING && !::isMouseButtonDown) {
+        float xmin = INFINITY, xmax = -INFINITY;
+        int s = player->getBufferIndex(), t = s + player->getParticleCount();
+        for (int i = s; i < t; i++) {
+            if (xmin > p[i].x) xmin = p[i].x;
+            if (xmax < p[i].x) xmax = p[i].x;
+        }
+        xmin *= SCALE;
+        xmax *= SCALE;
+        float xcur = -kc_getmypos(_kineti);
+        const float w = SCR_W;
+        if (xmin - w / 3 < xcur) xcur = Lerp(xcur, xmin - w / 3, 0.08);
+        if (xmax - w * 2 / 3 > xcur) xcur = Lerp(xcur, xmax - w * 2 / 3, 0.08);
+        xcur = Clamp(xcur, 0, _world->getWidth() * SCALE - SCR_W);
+        kc_setmypos(_kineti, -xcur);
+    }
 }

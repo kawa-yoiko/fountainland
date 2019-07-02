@@ -9,7 +9,15 @@ Player::Player(float x,float y):GameObject(),playerGroup(nullptr){
 Player::~Player(){
 }
 
+int Player::getBufferIndex() const{
+	return playerGroup->GetBufferIndex();
+}
+
 int Player::getParticleCount() const{
+	return playerGroup->GetParticleCount();
+}
+
+int Player::getSystemParticleCount() const{
 	return m_particleSystem->GetParticleCount();
 }
 
