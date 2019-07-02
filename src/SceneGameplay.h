@@ -31,6 +31,7 @@ public:
     Vector2 _cam;   // XXX
 
     std::vector<Widget *> _stageWidgets;
+    std::vector<Widget *> _stageKnobs;
 
     constexpr static const float SCALE = 10;
 

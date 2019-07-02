@@ -18,6 +18,13 @@ void pushScene(Scene *scene)
     sceneStack.push_back(scene);
 }
 
+void replaceScene(Scene *scene)
+{
+    if (!sceneStack.empty()) {
+        sceneStack.back() = scene;
+    }
+}
+
 void popScene()
 {
     if (!sceneStack.empty()) {

@@ -14,6 +14,7 @@ extern "C" {
 
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 
 static void updatePos(void *__this, float p)
 {
@@ -46,7 +47,6 @@ SceneGameplay::SceneGameplay()
     kc_setcallback_0(_kineti, STOP_REFRESHING, stopRefreshing);
     kc_setcallback_1(_kineti, UPDATE_POSITION, updatePos);
     kc_setvisiblesize(_kineti, SCR_W);
-    kc_setcontentsize(_kineti, SCR_W * 2);
     kc_setmypos(_kineti, 0);
 
     _isMouseDown = false;
@@ -59,6 +59,8 @@ SceneGameplay::SceneGameplay()
     player->setPosition(Vector2 {14, 0});
     _world->addPlayer(player);
 
+    kc_setcontentsize(_kineti, _world->getWidth() * SCALE);
+
     _cam = Vector2 {0, 0};
     _state = PREPARING;
 
@@ -69,8 +71,10 @@ SceneGameplay::SceneGameplay()
         [this] () {
             if (_state == PREPARING) {
                 _state = RUNNING;
+                for (Widget *w : _stageKnobs) w->setEnabled(false);
             } else if (_state == RUNNING) {
                 _state = RESTARTING;
+                replaceScene(new SceneGameplay());
             }
         }
     );
@@ -86,6 +90,7 @@ SceneGameplay::SceneGameplay()
             knob->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
             this->addWidget(knob);
             _stageWidgets.push_back(knob);
+            _stageKnobs.push_back(knob);
         } else {    // XXX: Add support for things other than bubbles
             Button *button = new Button(
                 LoadTexture("Sprite-0003.png"),
@@ -114,8 +119,15 @@ void SceneGameplay::update(double dt)
     if (IsKeyReleased(KEY_TAB)) {
         popScene();
         return;
-    } else if (IsKeyReleased(KEY_ENTER) && (_state == PREPARING)) {
-        _state = RUNNING;
+    } else if (IsKeyPressed(KEY_ENTER)) {
+        if (_state == PREPARING) {
+            _state = RUNNING;
+            for (Widget *w : _stageKnobs) w->setEnabled(false);
+        } else if (_state == RUNNING) {
+            _state = RESTARTING;
+            replaceScene(new SceneGameplay());
+            return;
+        }
     }
 
     if (::isMouseButtonPressed) {

@@ -11,6 +11,7 @@
 void preload();
 
 void pushScene(Scene *);
+void replaceScene(Scene *);
 void popScene();
 
 Vector2 drawTextAnchored(

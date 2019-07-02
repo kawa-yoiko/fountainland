@@ -13,6 +13,10 @@ World *loadLevel(const char *path)
 
     World *world = new World();
 
+    int w;
+    fscanf(f, "%d", &w);
+    world->setWidth(w);
+
     char name[16];
     while (fscanf(f, "%15s", name) == 1) {
         if (strcmp(name, "ground") == 0) {
