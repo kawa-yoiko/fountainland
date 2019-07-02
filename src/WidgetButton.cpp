@@ -32,7 +32,7 @@ void Button::mouseRelease(int x, int y)
         if (x >= x0 && x < x0 + _normalTex.width &&
             y >= y0 && y < y0 + _normalTex.height)
         {
-            _cb();
+            _cb(this);
         }
     }
     _isActive = false;

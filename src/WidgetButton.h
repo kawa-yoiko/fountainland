@@ -12,7 +12,7 @@
 
 class Button : public Widget {
 public:
-    typedef std::function<void ()> callback_t;
+    typedef std::function<void (Button *)> callback_t;
 
     Button(Texture normalTex, Texture activeTex, Vector2 anchor, callback_t cb)
       : _normalTex(normalTex), _activeTex(activeTex), _anchor(anchor),

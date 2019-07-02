@@ -68,7 +68,7 @@ SceneGameplay::SceneGameplay()
         LoadTexture("Sprite-0001.png"),
         LoadTexture("Sprite-0002.png"),
         Vector2 {1, 0},
-        [this] () {
+        [this] (Button *target) {
             if (_state == PREPARING) {
                 _state = RUNNING;
                 for (Widget *w : _stageKnobs) w->setEnabled(false);
@@ -97,8 +97,11 @@ SceneGameplay::SceneGameplay()
                 LoadTexture("Sprite-0003.png"),
                 LoadTexture("Sprite-0004.png"),
                 Vector2 {0.5, 0.5},
-                [obj] () {
-                    ((Trigger *)obj)->trigger();
+                [this, obj] (Button *target) {
+                    if (_state != PREPARING) {
+                        ((Trigger *)obj)->trigger();
+                        target->setEnabled(false);
+                    }
                 }
             );
             Vector2 p = ((Bubble *)obj)->getBubblePosition();
@@ -196,16 +199,6 @@ void SceneGameplay::drawGround(Ground *ground)
 
 void SceneGameplay::drawBubble(Bubble *bubble)
 {
-//	if (!bubble->getFlag()) return;
-	Vector2 p = posInCam(bubble->getBubblePosition());
-	float32 r = bubble->getBubbleSize();
-	float32 imp = bubble->getBubbleImpact();
-	DrawCircleV(
-		p,
-		r,
-		Color{ 128, 192, 255, 255 }
-	);
-	rlglDraw();
 }
 
 void SceneGameplay::drawCloud(Cloud *cloud)
