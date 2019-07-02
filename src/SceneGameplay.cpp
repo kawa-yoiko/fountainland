@@ -70,8 +70,10 @@ SceneGameplay::SceneGameplay()
         [this] () {
             if (_state == PREPARING) {
                 _state = RUNNING;
+                for (Widget *w : _stageKnobs) w->setEnabled(false);
             } else if (_state == RUNNING) {
                 _state = RESTARTING;
+                replaceScene(new SceneGameplay());
             }
         }
     );
@@ -87,6 +89,7 @@ SceneGameplay::SceneGameplay()
             knob->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
             this->addWidget(knob);
             _stageWidgets.push_back(knob);
+            _stageKnobs.push_back(knob);
         } else {    // XXX: Add support for things other than bubbles
             Button *button = new Button(
                 LoadTexture("Sprite-0003.png"),
@@ -115,8 +118,15 @@ void SceneGameplay::update(double dt)
     if (IsKeyPressed(KEY_TAB)) {
         popScene();
         return;
-    } else if (IsKeyPressed(KEY_ENTER) && _state == PREPARING) {
-        _state = RUNNING;
+    } else if (IsKeyPressed(KEY_ENTER)) {
+        if (_state == PREPARING) {
+            _state = RUNNING;
+            for (Widget *w : _stageKnobs) w->setEnabled(false);
+        } else if (_state == RUNNING) {
+            _state = RESTARTING;
+            replaceScene(new SceneGameplay());
+            return;
+        }
     }
 
     if (::isMouseButtonPressed) {
