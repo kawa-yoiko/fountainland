@@ -157,7 +157,6 @@ void SceneGameplay::draw()
             break;
         case Interactable::Fountain:
             this->drawFountain((Fountain *)obj);
-            ((Fountain *)obj)->emitWater();
             break;
         case Interactable::Ground:
             this->drawGround((Ground *)obj);

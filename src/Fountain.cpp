@@ -1,7 +1,19 @@
 #include "Fountain.h"
 
-Fountain::Fountain() : velocity(1), time(1), direction(0), isEmitting(false), fountainBody(nullptr) {
+Fountain::Fountain() : velocity(1), time(500), direction(0), isEmitting(false), fountainBody(nullptr),
+emitTime(250), notEmitTime(250), record(0) {
+	double proportion = getAngle() / (2.0f * b2_pi);
 	type = Type::Fountain;
+	emitTime = proportion * time / 2;
+	for (int i = 0; i < emitTime; ++i) {
+		cycle.push_back(1);
+	}
+	for (int i = 0; i < notEmitTime; ++i) {
+		cycle.push_back(0);
+	}
+	for (int i = 0; i < 250 - emitTime; ++i) {
+		cycle.push_back(1);
+	}
 }
 
 Fountain::~Fountain(){
@@ -12,12 +24,11 @@ Fountain::~Fountain(){
 void Fountain::emitWater() {
 	const float32 size = 5.0f;
 	const int emitRate = 6;
-	time = 1;
 
 	const b2ParticleGroupDef def;
 	b2ParticleGroup* group = m_particleSystem->CreateParticleGroup(def);
 	int32 numberOfParticlesCreated = 0;
-	int emitRemainder = emitRate * time;
+	int emitRemainder = emitRate;
 
 	b2ParticleDef pd;
 	pd.flags = b2_elasticParticle;
@@ -60,5 +71,7 @@ void Fountain::drawFountain() {
 }
 
 void Fountain::beforeTick() {
+	isEmitting = cycle[record];
 	if (isEmitting) emitWater();
+	changeRecord();
 }
