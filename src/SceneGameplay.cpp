@@ -83,9 +83,10 @@ SceneGameplay::SceneGameplay()
 
     for (Interactable *obj : _world->interactableList) {
         if (!obj->isTrigger) {  // XXX: Add isKnobSetup?
-            Knob *knob = new Knob([obj] (double val) {
-                ((Environment *)obj)->setAngle(val);
-            });
+            Knob *knob = new Knob(
+                ((Environment *)obj)->getAngle(),
+                [obj] (double val) { ((Environment *)obj)->setAngle(val); }
+            );
             Vector2 p = ((Environment *)obj)->getPosition();
             knob->setPosition(Vector2 {p.x * SCALE, p.y * SCALE});
             this->addWidget(knob);

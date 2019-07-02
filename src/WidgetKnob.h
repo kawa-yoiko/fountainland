@@ -14,7 +14,7 @@ class Knob : public Widget {
 public:
     typedef std::function<void (double)> callback_t;
 
-    Knob(callback_t cb);
+    Knob(double value, callback_t cb);
     virtual ~Knob() override;
 
     virtual bool mouseHold(int x, int y) override;
@@ -26,7 +26,6 @@ public:
     static const int SPEED = 240;
 
 protected:
-    Texture _knobTex;
     callback_t _cb;
 
     double _initialY;

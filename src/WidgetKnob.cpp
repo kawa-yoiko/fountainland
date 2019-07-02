@@ -1,14 +1,14 @@
 #include "WidgetKnob.h"
 
-Knob::Knob(callback_t cb)
-  : _cb(cb), _isActive(false), _value(0)
+#include <cmath>
+
+Knob::Knob(double value, callback_t cb)
+  : _cb(cb), _isActive(false), _value(value)
 {
-    _knobTex = LoadTexture("Sprite-0001.png");
 }
 
 Knob::~Knob()
 {
-    UnloadTexture(_knobTex);
 }
 
 bool Knob::mouseHold(int x, int y)
@@ -33,7 +33,7 @@ static inline double clamp_double(double val, double min, double max)
 bool Knob::mouseMove(int x, int y)
 {
     if (_isActive) {
-        _value = clamp_double(_initialY - (double)y / SPEED, 0, 1);
+        _value = _initialY - (double)y / SPEED;
         _cb(_value);
     }
     return _isActive;
@@ -47,11 +47,10 @@ void Knob::mouseRelease(int x, int y)
 void Knob::draw()
 {
     if (_isActive) {
-        DrawTexture(
-            _knobTex,
-            _pos.x - _knobTex.width / 2,
-            _pos.y - _knobTex.height / 2,
-            Color {255, 255, 255, 255}
+        DrawCircleV(_pos, 24, Color {255, 255, 255, 255});
+        DrawLineV(_pos,
+            Vector2 {(float)(_pos.x + 24 * cos(_value)), (float)(_pos.y + 24 * sin(_value))},
+            Color {0, 0, 0, 255}
         );
     }
 }
