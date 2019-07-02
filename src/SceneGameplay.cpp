@@ -14,6 +14,7 @@ extern "C" {
 
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 
 static void updatePos(void *__this, float p)
 {
