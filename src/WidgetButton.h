@@ -20,6 +20,8 @@ public:
     { }
     virtual ~Button() override;
 
+    void changeTexture(Texture normalTex, Texture activeTex);
+
     virtual bool mouseHold(int x, int y) override;
     virtual bool mouseMove(int x, int y) override;
     virtual void mouseRelease(int x, int y) override;

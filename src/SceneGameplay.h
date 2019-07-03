@@ -17,6 +17,7 @@ extern "C" {
 #include <vector>
 
 class Widget;
+class Button;
 
 class SceneGameplay : public Scene {
 public:
@@ -63,6 +64,8 @@ protected:
     int _numSteps;
 
     void changeState();
+
+    Button *_stateButton;
 };
 
 #endif

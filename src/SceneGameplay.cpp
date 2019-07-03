@@ -81,6 +81,7 @@ SceneGameplay::SceneGameplay()
     );
     button->setPosition(Vector2 {SCR_W - 6, 6});
     this->addWidget(button);
+    _stateButton = button;
 
     for (Interactable *obj : _world->interactableList) {
         if (!obj->isTrigger) {  // XXX: Add isKnobSetup?
@@ -98,8 +99,8 @@ SceneGameplay::SceneGameplay()
             _stageKnobs.push_back(knob);
         } else {    // XXX: Add support for things other than bubbles
             Button *button = new Button(
-                LoadTexture("Sprite-0003.png"),
-                LoadTexture("Sprite-0004.png"),
+                LoadTexture("Sprite-0005.png"),
+                LoadTexture("Sprite-0006.png"),
                 Vector2 {0.5, 0.5},
                 [this, obj] (Button *target) {
                     if (_state != PREPARING) {
@@ -122,6 +123,10 @@ void SceneGameplay::changeState()
         _state = RUNNING;
         for (Widget *w : _stageKnobs) w->setEnabled(false);
         _numSteps = 0;
+        _stateButton->changeTexture(
+            LoadTexture("Sprite-0003.png"),
+            LoadTexture("Sprite-0004.png")
+        );
     } else if (_state == RUNNING) {
         _state = RESTARTING;
         SceneGameplay *scene = new SceneGameplay();

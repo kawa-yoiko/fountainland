@@ -6,6 +6,14 @@ Button::~Button()
     UnloadTexture(_activeTex);
 }
 
+void Button::changeTexture(Texture normalTex, Texture activeTex)
+{
+    UnloadTexture(_normalTex);
+    UnloadTexture(_activeTex);
+    _normalTex = normalTex;
+    _activeTex = activeTex;
+}
+
 bool Button::mouseHold(int x, int y)
 {
     float x0 = _pos.x - _anchor.x * _normalTex.width;
